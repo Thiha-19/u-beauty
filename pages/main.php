@@ -22,14 +22,6 @@ else
 {
 	
 }
-if(isset($_POST['btncus'])) 
-{
-	
-		// $_SESSION['csid']=$rows['csid'];
-
-		echo "<script>window.location='customerregister.php'</script>";
-	
-}
 
 
 ?>
@@ -50,10 +42,9 @@ if(isset($_POST['btncus']))
 <input type="text" name="txtpagename"  value="<?php echo $pagename ?>" readonly/>
 <input type="text" name="txtadminname"  value="<?php echo $adminname ?>" readonly/><br>
         <a href="procedure.php">Procedure add m lr</a><br>
-        <a href="customertable.php">Customer add m lr</a><br>
+        <a href="staffcustomer.php">Customer add m lr</a><br>
         <a href="customerservice.php">Page add m lr</a><br>
         <a href="booking.php">Booking add m lr</a><br>
-        <input type="button" class="btn btn-secondary" name="btncus" value="Customer"/>
         </form>
     </fieldset>
 </body>

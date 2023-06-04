@@ -62,10 +62,10 @@ else
 		//print_r($rows);
 
 		$csid=$rows['csid'];
-		$pagename=$rows['pagename'];
-		$adminname=$rows['adminname'];
+		$pagename=$rows['pageName'];
+		$adminname=$rows['adminName'];
 		$phone=$rows['phone'];
-		$username=$rows['username'];
+		$username=$rows['userName'];
 		$password=$rows['password'];
 
 		echo "<tr>";

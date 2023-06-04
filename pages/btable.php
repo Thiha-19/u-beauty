@@ -81,9 +81,9 @@ else
 
 		$bid=$rows['bid'];
         $date=$rows['date'];
-        $cid=$rows['cname'];
-        $csid=$rows['pagename'];
-        $procedure=$rows['pname'];
+        $cid=$rows['cName'];
+        $csid=$rows['pageName'];
+        $procedure=$rows['pName'];
 
 		echo "<tr>";
 		echo "<td>" . ($i + 1) ."</td>";

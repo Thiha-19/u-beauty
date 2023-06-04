@@ -58,7 +58,7 @@ else
 		//print_r($rows);
 
 		$pid=$rows['pid'];
-		$pname=$rows['pname'];
+		$pname=$rows['pName'];
 
 		echo "<tr>";
 		// echo "<td>" . ($i + 1) ."</td>";

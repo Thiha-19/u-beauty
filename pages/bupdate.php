@@ -15,10 +15,10 @@ if(isset($_GET['bid']))
 	$data=mysqli_fetch_array($query);
 	$bid=$data['bid'];
 	$date=$data['date'];
-	$cid=$data['cname'];
-    $csid=$data['pagename'];
-    $csname=$data['adminname'];
-    $procedure=$data['pname'];
+	$cid=$data['cName'];
+    $csid=$data['pageName'];
+    $csname=$data['adminName'];
+    $procedure=$data['pName'];
 }
 else
 {
@@ -27,39 +27,33 @@ else
 
 if(isset($_POST['btnup'])) 
 {	
-    $txtreid=$_POST['txtreid'];
-	$txtdid=$_POST['txtdid'];
-	$cborid=$_POST['cborid'];
-	$txtnop=$_POST['txtnop'];
-	$txtsdate=$_POST['txtsdate'];
-	$txtdesc=$_POST['txtdesc'];
+    $txtbid=$_POST['txtbid'];
 	$txtdate=$_POST['txtdate'];
+	$txtcname=$_POST['txtcname'];
+	$txtcsname=$_POST['txtcsname'];
+	$txtpname=$_POST['txtpname'];
 
 
-	$Update="UPDATE recruitment
+	$Update="UPDATE booking
 			 SET
-			 did='$txtdid',
-			 rid='$cborid',
-             num_position='$txtnop',
-             sdate='$txtsdate',
-			 description='$txtdesc'
+			 date='$txtdate'
 			 WHERE
-			 reid='$txtreid'
+			 bid='$txtbid'
 			 ";
 	$ret=mysqli_query($connection,$Update);
 
 	if($ret) //True
 	{	
-		$txt="Admin updated recruitment ".$txtreid." at ". $txtdate;
+		// $txt="Admin updated recruitment ".$txtreid." at ". $txtdate;
 
-			$insert="INSERT INTO `log`
-			(`ltid`, `date`,`text`) 
-			VALUES ('1','$txtdate','$txt')
-			";
-			$ret1=mysqli_query($connection,$insert);
+		// 	$insert="INSERT INTO `log`
+		// 	(`ltid`, `date`,`text`) 
+		// 	VALUES ('1','$txtdate','$txt')
+		// 	";
+		// 	$ret1=mysqli_query($connection,$insert);
 
-		echo "<script>window.alert('SUCCESS : Recruitment Info Updated')</script>";
-		echo "<script>window.location='adminrecruit.php'</script>";
+		echo "<script>window.alert('SUCCESS : Booking Info Updated')</script>";
+		echo "<script>window.location='btable.php'</script>";
 	}
 	else
 	{
@@ -67,28 +61,6 @@ if(isset($_POST['btnup']))
 	}
 }
 
-
-if (isset($_GET['reid'])) 
-{
-	$reid=$_GET['reid'];
-
-	$re_List="SELECT * 
-				 FROM role
-				 ";
-	$re_ret=mysqli_query($connection,$re_List);
-	$re_count=mysqli_num_rows($re_ret);
-	$rows=mysqli_fetch_array($re_ret);
-
-	if($re_count < 1) 
-	{
-		echo "<script>window.alert('ERROR : Recruitment Info Not Found')</script>";
-		echo "<script>window.location='adminrecruit.php'</script>";
-	}
-}
-else
-{
-	$reid="";
-}
 
 
 ?>
@@ -122,7 +94,7 @@ var time = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
 
 	<div class="form-group">
     	<label for="" class="form-label">Booking Date</label>
-		<input type="date" class="form-label" name="txtdate" id=""  value="<?php echo $date ?>" readonly>
+		<input type="date" class="form-label" name="txtdate" id=""  value="<?php echo $date ?>" >
 		
     </div>
 
@@ -142,41 +114,6 @@ var time = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
     </div>
 
 
-	<div class="form-group">
-    	<label for="" class="form-label" class="form-label">New Role</label>
-    	<select name="cborid" class="form-label" class="form-label" required>
-			<option>Choose New Role</option>
-			<?php  
-			$r_query="SELECT * FROM role";
-			$r_ret=mysqli_query($connection,$r_query);
-			$r_count=mysqli_num_rows($r_ret);
-
-			for($i=0;$i<$r_count;$i++) 
-			{ 
-				$row=mysqli_fetch_array($r_ret);
-				$rid=$row['rid'];
-				$role=$row['role'];
-
-				echo "<option value='$rid'>$rid - $role</option>";
-			}
-			?>
-			</select>
-    </div>
-
-	<div class="form-group">
-    	<label class="form-label" for="">Number of position</label>
-    	<input class="form-label" type="text" name="txtnop" value="<?php echo $num_position ?>" required>
-    </div>
-
-	<div class="form-group">
-    	<label class="form-label" for="">Start Date</label>
-    	<input class="form-label" type="text" name="txtsdate" id=""  value="<?php echo $sdate ?>" readonly>
-    </div>
-
-	<div class="form-group">
-    	<label class="form-label" for="">Description</label>
-    	<input class="form-label" type="text" name="txtdesc" id=""  value="<?php echo $description ?>" required>
-    </div>
 
 	<input type="submit" name="btnup" class="btn btn-secondary" value="Update">
 	<input type="reset" class="btn btn-danger" value="Clear">

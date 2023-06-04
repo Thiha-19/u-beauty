@@ -1,21 +1,21 @@
 <?php
-	include('connect.php');
 	session_start();
+	include('connect.php');
 	include('staffhead.php');
 
 	if(isset($_SESSION['csid']))
 	{   
 		$csid=$_SESSION['csid'];
 		
-		$select="SELECT `csid`, `pagename`, `adminname`
+		$select="SELECT `csid`, `pageName`, `adminName`
 		FROM `customerservice` 
 		WHERE csid = '$csid'
 		";
 		$query=mysqli_query($connection,$select);
 		$data=mysqli_fetch_array($query);
 		$csid=$_SESSION['csid'];
-		$pagename=$data['pagename'];
-		$adminname=$data['adminname'];
+		$pagename=$data['pageName'];
+		$adminname=$data['adminName'];
 	}
 	else
 	{
@@ -69,6 +69,7 @@ else
         <th>Customer ID</th>
 		<th>Customer Name</th>
 		<th>Email</th>
+		<th>Occupation</th>
 		<th>Addresss</th>
 		<th>phone</th>
 		<th>Dob</th>
@@ -83,8 +84,9 @@ else
 		//print_r($rows);
 
 		$cid=$rows['cid'];
-		$cname=$rows['cname'];
+		$cname=$rows['cName'];
 		$email=$rows['email'];
+		$job=$rows['job'];
 		$address=$rows['address'];
 		$phone=$rows['phone'];
 		$dob=$rows['dob'];
@@ -93,6 +95,7 @@ else
 		echo "<td>$cid</td>";
 		echo "<td>$cname</td>"; 
 		echo "<td>$email</td>";
+		echo "<td>$job</td>";
 		echo "<td>$address</td>";        
 		echo "<td>$phone</td>";
 		echo "<td>$dob</td>";

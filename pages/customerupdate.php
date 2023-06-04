@@ -14,9 +14,10 @@ if(isset($_GET['cid']))
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
 	$cid=$data['cid'];
-	$cname=$data['cname'];
+	$cname=$data['cName'];
 	$email=$data['email'];
 	$address=$data['address'];
+	$job=$data['job'];
 	$phone=$data['phone'];
 	$dob=$data['dob'];
 	function countdays($date)   
@@ -60,14 +61,15 @@ if(isset($_POST['btnup']))
 	$txtaddress=$_POST['txtaddress'];
 	$txtphone=$_POST['txtphone'];
 	$txtdob=$_POST['txtdob'];
+	$txtjob=$_POST['txtjob'];
 
 
 	$Update="UPDATE customer
 			 SET
 			 cname='$txtcname',
-			--  age='$txtage',
 			 email='$txtmail',
              address='$txtaddress',
+             job='$txtjob',
              phone='$txtphone',
              dob='$txtdob'
 			 WHERE
@@ -170,6 +172,14 @@ Birthday:<?php echo $dob;?> <br>
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control"  name="txtdob" value="<?php echo $dob ?>" required>
                         <label for="dob">Date of Birth</label>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $job ?>" required>
+                        <label for="text">Occupation</label>
                     </div>
                 </div>
             </div>

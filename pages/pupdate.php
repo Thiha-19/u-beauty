@@ -13,7 +13,7 @@ if(isset($_GET['pid']))
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
 	$pid=$data['pid'];
-	$pname=$data['pname'];
+	$pname=$data['pName'];
 }
 else
 {
@@ -28,7 +28,7 @@ if(isset($_POST['btnupdate']))
 
 	$Update="UPDATE `procedure`
 			 SET
-			 pname='$txtpname'
+			 pName='$txtpname'
 			 WHERE
 			 pid='$txtpid'
 			 ";
@@ -87,30 +87,6 @@ else
 </head>
 <body>
 
-
-<!-- <form action="pupdate.php" method="post" >
-
-<fieldset class="text-center">
-<legend>Enter Updated Procedure Information :</legend>
-<input type="hidden" name="txtdate" id="currentTime">
- 
-<script>
-var today = new Date();
-var time = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-  document.getElementById("currentTime").value = time;
-</script>
-    <div class="form-group">        
-    	<label for="">ID</label>
-    	<input type="text" name="txtpid"  value="<?php echo $pid ?>" readonly>
-    </div>
-
-    <div class="form-group">
-    	<label for="">Procedure</label>
-    	<input type="text" name="txtpname"  value="<?php echo $pname ?>" required/>
-    </div>
-
-	<input type="submit" name="btnup" class="btn btn-secondary" value="Update">
-</fieldset> -->
 
 <div id="body-section">
             <div class="gold-line-container">

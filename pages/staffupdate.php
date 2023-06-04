@@ -13,8 +13,8 @@ if(isset($_GET['csid']))
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
 	$csid=$data['csid'];
-	$pagename=$data['pagename'];
-    $adminname=$data['adminname'];
+	$pagename=$data['pageName'];
+    $adminname=$data['adminName'];
 	$phone=$data['phone'];
 	$username=$data['username'];
 	$password=$data['password'];
@@ -36,10 +36,10 @@ if(isset($_POST['btnup']))
 
 	$Update="UPDATE customerservice
 			 SET
-			 pagename='$txtpagename',
-			 adminname='$txtadminname',
+			 pageName='$txtpagename',
+			 adminName='$txtadminname',
 			 phone='$txtphone',
-             username='$txtusername',
+             userName='$txtusername',
              password='$txtpassword'
 			 WHERE
 			 csid='$txtcsid'

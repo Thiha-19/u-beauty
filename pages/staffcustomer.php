@@ -7,15 +7,15 @@ if(isset($_SESSION['csid']))
 {   
 	$csid=$_SESSION['csid'];
     
-    $select="SELECT `csid`, `pagename`, `adminname`
+    $select="SELECT `csid`, `pageName`, `adminName`
     FROM `customerservice` 
     WHERE csid = '$csid'
     ";
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
 	$csid=$_SESSION['csid'];
-	$pagename=$data['pagename'];
-	$adminname=$data['adminname'];
+	$pagename=$data['pageName'];
+	$adminname=$data['adminName'];
 }
 else
 {
@@ -24,43 +24,35 @@ else
 
 if(isset($_POST['btnadd'])) 
 {
+	$txtcsid=$_POST['txtcsid'];
 	$txtcname=$_POST['txtcname'];
 	$txtmail=$_POST['txtmail'];
 	$txtphone=$_POST['txtphone'];
 	$txtdob=$_POST['txtdob'];
+	$txtjob=$_POST['txtjob'];
 	$txtaddress=$_POST['txtaddress'];
-	// $txtage=$_POST['txtage'];
 	$txtcsid=$_POST['txtcsid'];
 	$Select="SELECT * FROM customer
-            WHERE cname='$txtcname'";
+            WHERE cName='$txtcname'";
     $retSelect=mysqli_query($connection,$Select);
     $Select_Count=mysqli_num_rows($retSelect);
-        if ($Select_Count>0) 
+        
+    if ($Select_Count>0) 
         {
             echo "<script>window.alert('Error :Customer Already Registered')</script>";
-            echo "<script>window.location='customerregister.php'</script>";
+            echo "<script>window.location='customertable.php'</script>";
         }
         else 
         {
 			$Insert="INSERT INTO `customer`
-			-- (`cname`, `age`, `email`,`address`,`phone`,`dob`,`csid`) 
-            (`cname`,  `email`,`address`,`phone`,`dob`,`csid`) 
+            (`cName`,  `email`,`address`,`phone`,`job`,`dob`,`csid`) 
 			VALUES 
-			-- ('$txtcname','$txtage','$txtmail','$txtaddress','$txtphone','$txtdob', '$txtcsid')
-            ('$txtcname','$txtmail','$txtaddress','$txtphone','$txtdob', '$txtcsid')
+            ('$txtcname','$txtmail','$txtaddress','$txtphone','$txtjob','$txtdob', '$txtcsid')
 			";
 			$ret=mysqli_query($connection,$Insert);
 
 			if($ret) 
 			{
-				// $txt="Admin created new department ".$txtdname." at ". $txtdate;
-
-				// $insert="INSERT INTO `log`
-				// (`ltid`, `date`,`text`) 
-				// VALUES ('1','$txtdate','$txt')
-				// ";
-				// $ret1=mysqli_query($connection,$insert);
-
 				echo "<script>window.alert('SUCCESS : New Customer Registered')</script>";
 				echo "<script>window.location='customertable.php'</script>";
 			}
@@ -95,11 +87,12 @@ if(isset($_POST['btnadd']))
         <div class="form-container">
 
             <div class="form-outer-border">
-        <form action="stuffcustomer.php" method="post" enctype="multipart/form-data">
+        <form action="staffcustomer.php" method="post" enctype="multipart/form-data">
             <h1 class="form-title">Customer Registration</h1>
             <div class="row">
                 <div class=" col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
+                    <input type="hidden" class="form-control" name="txtcsid" value="<?php echo $csid ?>">
                         <input type="text" class="form-control" name="txtcname" placeholder="name@example.com">
                         <label for="name"> Customer Name</label>
                     </div>
@@ -127,10 +120,11 @@ if(isset($_POST['btnadd']))
             </div><div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtphone" placeholder="phone@example.com">
+                        <input type="text" class="form-control" name="txtjob" placeholder="phone@example.com">
                         <label for="text">Occupation</label>
                     </div>
                 </div>
+                
             </div>
             <div class="form-floating mb-3">
                 <textarea name="txtaddress" class="form-control" cols="30" rows="5" style="height:1%" placeholder="hi"></textarea>

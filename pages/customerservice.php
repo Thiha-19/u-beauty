@@ -21,7 +21,7 @@ if(isset($_POST['btnadd']))
         else 
         {
 			$Insert="INSERT INTO `customerservice`
-			(`pagename`, `adminname`, `phone`,`username`,`password`) 
+			(`pageName`, `adminName`, `phone`,`username`,`password`) 
 			VALUES 
 			('$txtpname','$txtaname','$txtphone','$txtuname','$txtpass')
 			";
