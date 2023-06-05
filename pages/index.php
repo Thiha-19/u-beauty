@@ -30,7 +30,7 @@ if(isset($_POST['btnlogin']))
 		$_SESSION['csid']=$rows['csid'];
 		
         echo "<script>window.alert('Success : Page Login Success)</script>";
-	 	echo "<script>window.location='main.php'</script>";
+	 	echo "<script>window.location='staff/main.php'</script>";
 	}
 }
 ?>

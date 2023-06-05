@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <li class="nav-item">
-                    <a class="nav-link" href="adminlogin.php">Admin</a>
+                    <a class="nav-link" href="admin/adminlogin.php">Admin</a>
                 </li>
         </div>
       </nav>

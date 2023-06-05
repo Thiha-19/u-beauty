@@ -1,6 +1,6 @@
 <?php  
-include('connect.php');
-include('staffhead.php');
+include('../connect.php');
+include('adminhead.php');
 
 if(isset($_POST['btnadd'])) 
 {
@@ -25,16 +25,9 @@ if(isset($_POST['btnadd']))
 
 			if($ret) 
 			{
-				// $txt="Admin added new Customer Service ".$txtpname." at ". $txtdate;
-
-				// $insert="INSERT INTO `log`
-				// (`ltid`, `date`,`text`) 
-				// VALUES ('1','$txtdate','$txt')
-				// ";
-				// $ret1=mysqli_query($connection,$insert);
 
 				echo "<script>window.alert('SUCCESS : New Procedure Added')</script>";
-				echo "<script>window.location='ptable.php'</script>";
+				echo "<script>window.location='adminproceduretable.php'</script>";
 			}
 			else
 			{
@@ -86,7 +79,7 @@ if(isset($_POST['btnadd']))
 
         </div>
 <?php
-include('footer.php');
+include('../footer.php');
 ?>
 </body>
 </html>

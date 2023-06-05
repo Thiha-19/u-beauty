@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	include('connect.php');
-	include('staffhead.php');
+	include('../connect.php');
+	include('adminhead.php');
 
 	if(isset($_SESSION['csid']))
 {   
@@ -43,13 +43,13 @@ else
 		$('#tableid').DataTable();
 	} );
 </script>
-    <form action="btable.php" method='post' style = "">
+    <form action="adminbtable.php" method='post' style = "">
     <fieldset>
 <legend>Booking List :</legend>
 <?php  
 $re_List="SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND b.csid =cs.csid AND p.pid = b.pid and b.csid = '$csid'
+            where b.cid = c.cid AND p.pid = b.pid
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
@@ -64,7 +64,7 @@ else
 	<table id="tableid" class="table table-striped">
 	<thead>
 	<tr>
-		<th>#</th>
+		<th>No</th>
         <th>Booking ID</th>
 		<th>Date</th>
 		<th>Customer</th>
@@ -93,7 +93,10 @@ else
 		echo "<td>$csid</td>";
 		echo "<td>$procedure</td>";
 		echo "<td>
-			  <a href='bupdate.php?bid=$bid'>Update</a>
+			  <a href='adminbupdate.php?bid=$bid'>Update</a>
+			  </td>";
+		echo "<td>
+			  <a href='bdelete.php?bid=$bid'>Delete</a>
 			  </td>";
 		echo "</tr>";
 	}

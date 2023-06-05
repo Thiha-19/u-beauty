@@ -1,26 +1,8 @@
 <?php
 	session_start();
-	include('connect.php');
-	include('staffhead.php');
+	include('../connect.php');
+	include('adminhead.php');
 
-	if(isset($_SESSION['csid']))
-	{   
-		$csid=$_SESSION['csid'];
-		
-		$select="SELECT `csid`, `pageName`, `adminName`
-		FROM `customerservice` 
-		WHERE csid = '$csid'
-		";
-		$query=mysqli_query($connection,$select);
-		$data=mysqli_fetch_array($query);
-		$csid=$_SESSION['csid'];
-		$pagename=$data['pageName'];
-		$adminname=$data['adminName'];
-	}
-	else
-	{
-		
-	}
 
     if(isset($_POST['btnadd'])) 
 {
@@ -44,13 +26,12 @@
 		$('#tableid').DataTable();
 	} );
 </script>
-    <form action="customertable.php" method='post' style = "">
+    <form action="adminctable.php" method='post' style = "">
     <fieldset>
 <legend>Customer List :</legend>
 <?php  
 $c_List="SELECT * 
 			 FROM customer
-			 where csid='$csid'
 			 ";
 $c_ret=mysqli_query($connection,$c_List);
 $c_count=mysqli_num_rows($c_ret);
@@ -100,14 +81,16 @@ else
 		echo "<td>$phone</td>";
 		echo "<td>$dob</td>";
 		echo "<td>
-			  <a href='customerupdate.php?cid=$cid'>Update</a> 
+			  <a href='admincdetail.php?cid=$cid'>Detail</a> 
+			  </td>";
+        echo "<td>
+			  <a href='../cdelete.php?cid=$cid'>Delete</a> 
 			  </td>";
 		echo "</tr>";
 	}
 	 ?>
 	 </tbody>
 	</table>
-    <input type="submit" value="Add Customer" class="btn btn-secondary" name="btnadd"> 
 <?php
 }
 ?>

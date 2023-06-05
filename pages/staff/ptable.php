@@ -1,5 +1,5 @@
 <?php
-	include('connect.php');
+	include('../connect.php');
 	include('staffhead.php');
 
     if(isset($_POST['btnpro'])) 
@@ -64,15 +64,11 @@ else
 		// echo "<td>" . ($i + 1) ."</td>";
 		echo "<td>$pid</td>";
 		echo "<td>$pname</td>";
-		echo "<td>
-			  <a href='pupdate.php?pid=$pid'>Update</a> 
-			  </td>";
 		echo "</tr>";
 	}
 	 ?>
 	 </tbody>
 	</table>
-    <input type="submit" value="Add New Procedure" class="btn btn-secondary" name="btnpro"> 
 <?php
 }
 ?>

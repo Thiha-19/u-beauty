@@ -1,5 +1,5 @@
 <?php  
-include('connect.php');
+include('../connect.php');
 include('staffhead.php');
 session_start();
 
@@ -91,7 +91,7 @@ if(isset($_POST['btnadd']))
 			{ 
 				$row=mysqli_fetch_array($d_ret);
 				$cid=$row['cid'];
-				$cname=$row['cname'];
+				$cname=$row['cName'];
 
 				echo "<option value='$cid'>$cid - $cname</option>";
 			}
@@ -122,7 +122,7 @@ if(isset($_POST['btnadd']))
 			{ 
 				$row=mysqli_fetch_array($r_ret);
 				$pid=$row['pid'];
-				$pname=$row['pname'];
+				$pname=$row['pName'];
 
 				echo "<option value='$pid'>$pid - $pname</option>";
 			}

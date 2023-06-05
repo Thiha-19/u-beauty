@@ -1,15 +1,16 @@
 <?php  
 session_start();
-include('connect.php');
-include('staffhead.php');
+include('../connect.php');
+include('adminhead.php');
 
 
 if(isset($_GET['cid']))
 {
 	$cid=$_GET['cid'];
 
-	$select="select * from customer
-			 where cid='$cid'";
+	$select="select c.*, cs.pageName
+             from customer c, customerservice cs
+			 where c.cid='$cid' and c.csid=cs.csid";
 	
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
@@ -19,6 +20,7 @@ if(isset($_GET['cid']))
 	$address=$data['address'];
 	$job=$data['job'];
 	$phone=$data['phone'];
+    $page=$data['pageName'];
 	$dob=$data['dob'];
 	function countdays($date)   
 	{
@@ -55,46 +57,13 @@ else
 
 if(isset($_POST['btnup'])) 
 {	
-	$txtcid=$_POST['txtcid'];
-	$txtcname=$_POST['txtcname'];
-	$txtmail=$_POST['txtmail'];
-	$txtaddress=$_POST['txtaddress'];
-	$txtphone=$_POST['txtphone'];
-	$txtdob=$_POST['txtdob'];
-	$txtjob=$_POST['txtjob'];
-
-
-	$Update="UPDATE customer
-			 SET
-			 cname='$txtcname',
-			 email='$txtmail',
-             address='$txtaddress',
-             job='$txtjob',
-             phone='$txtphone',
-             dob='$txtdob'
-			 WHERE
-			 cid='$txtcid'
-			 ";
-	$ret=mysqli_query($connection,$Update);
-
-	if($ret) //True
-	{	
-		//$txt="Admin updated department ".$txtdname." at ". $txtdate;
-
-			//$insert="INSERT INTO `log`
-			//( `ltid`, `date`,`text`) 
-			//VALUES ('2','$txtdate','$txt')
-			//";
-			//$ret1=mysqli_query($connection,$insert);
-
-		echo "<script>window.alert('SUCCESS : Customer Info Updated')</script>";
-		echo "<script>window.location='customertable.php'</script>";
-	}
-	else
-	{
-		echo "<p>Error : Something went wrong in Update" . mysqli_error($connection) . "</p>";
-	}
+		echo "<script>window.location='adminctable.php'</script>";
 }
+else
+{
+		echo "<p>Error : Something went wrong in Process" . mysqli_error($connection) . "</p>";
+}
+
 
 
 if (isset($_GET['cid'])) 
@@ -111,7 +80,7 @@ if (isset($_GET['cid']))
 	if($c_count < 1) 
 	{
 		echo "<script>window.alert('ERROR : Customer Info Not Found')</script>";
-		echo "<script>window.location='main.php'</script>";
+		echo "<script>window.location='adminctable.php'</script>";
 	}
 }
 else
@@ -124,7 +93,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Customer Update</title>
+	<title>Customer Detail</title>
 
 
 </head>
@@ -144,19 +113,19 @@ Birthday:<?php echo $dob;?> <br>
         <div class="form-container">
 
             <div class="form-outer-border">
-        <form action="customerupdate.php" method="post" enctype="multipart/form-data">
+        <form action="admincdetail.php" method="post" enctype="multipart/form-data">
             <h1 class="form-title">Customer Update</h1>
             <div class="row">
                 <div class=" col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtcname" value="<?php echo $cname ?>" required>
+                        <input type="text" class="form-control" name="txtcname" value="<?php echo $cname ?>" readonly>
 						<input type="hidden" name="txtcid"  value="<?php echo $cid ?>" readonly>
                         <label for="name"> Customer Name</label>
                     </div>
                 </div>
                 <div class=" col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="txtmail" value="<?php echo $email ?>" required>
+                        <input type="email" class="form-control" name="txtmail" value="<?php echo $email ?>" readonly>
                         <label for="email">Email</label>
                     </div>
                 </div>
@@ -164,31 +133,47 @@ Birthday:<?php echo $dob;?> <br>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtphone" value="<?php echo $phone ?>" required>
+                        <input type="text" class="form-control" name="txtphone" value="<?php echo $phone ?>" readonly>
                         <label for="phone">Phone</label>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control"  name="txtdob" value="<?php echo $dob ?>" required>
+                        <input type="date" class="form-control"  name="txtdob" value="<?php echo $dob ?>" readonly>
                         <label for="dob">Date of Birth</label>
                     </div>
                 </div>
             </div>
 			<div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $job ?>" required>
+                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $job ?>" readonly>
                         <label for="text">Occupation</label>
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $page ?>" readonly>
+                        <label for="text">Page</label>
+                    </div>
+                </div>
             </div>
+
+            <!-- <div class="row">                
+            <div class="col-sm-12 col-md-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $return ?>" readonly>
+                        <label for="text">Days Left Til Next BD</label>
+                    </div>
+                </div>
+            </div> -->
+            
             <div class="form-floating mb-3">
-                <textarea name="txtaddress"  class="form-control" cols="30" rows="5" style="height:1%"><?php echo $address ?></textarea>
+                <textarea name="txtaddress"  class="form-control" cols="30" rows="5" style="height:1%" readonly><?php echo $address ?></textarea>
                 <label for="address">Address</label>
             </div>
             <button class="u-btn-gold" name="btnup">
-                Update
+                Back
             </button>
 
         </form>

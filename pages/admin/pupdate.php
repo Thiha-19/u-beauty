@@ -1,7 +1,7 @@
 <?php  
 session_start();
-include('connect.php');
-include('staffhead.php');
+include('../connect.php');
+include('adminhead.php');
 
 if(isset($_GET['pid']))
 {
@@ -45,7 +45,7 @@ if(isset($_POST['btnupdate']))
 			//$ret1=mysqli_query($connection,$insert);
 
 		echo "<script>window.alert('SUCCESS : Procedure Info Updated')</script>";
-		echo "<script>window.location='ptable.php'</script>";
+		echo "<script>window.location='adminproceduretable.php'</script>";
 	}
 	else
 	{
@@ -68,7 +68,7 @@ if (isset($_GET['pid']))
 	if($c_count < 1) 
 	{
 		echo "<script>window.alert('ERROR : Procedure Info Not Found')</script>";
-		echo "<script>window.location='ptable.php'</script>";
+		echo "<script>window.location='adminproceduretable.php'</script>";
 	}
 }
 else
@@ -120,7 +120,7 @@ else
 
         </div>
 <?php
-include('footer.php');
+include('../footer.php');
 ?>
 
 

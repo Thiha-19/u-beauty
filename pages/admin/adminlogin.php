@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include('connect.php');
+include('../connect.php');
 include('adminloginhead.php');
 
 
@@ -85,7 +85,7 @@ if(isset($_POST['btnlogin']))
 
         </div>
 <?php 
-include('footer.php'); 
+include('../footer.php'); 
 ?>
 </body>
 </html>

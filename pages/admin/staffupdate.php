@@ -1,7 +1,7 @@
 <?php  
 session_start();
-include('header.php');
-include('connect.php');
+include('adminhead.php');
+include('../connect.php');
 
 if(isset($_GET['csid']))
 {
@@ -16,7 +16,7 @@ if(isset($_GET['csid']))
 	$pagename=$data['pageName'];
     $adminname=$data['adminName'];
 	$phone=$data['phone'];
-	$username=$data['username'];
+	$username=$data['userName'];
 	$password=$data['password'];
 }
 else
@@ -98,55 +98,6 @@ else
 
 </head>
 <body>
-
-
-<!-- <form action="staffupdate.php" method="post" >
-
-<fieldset class="text-center">
-<legend>Enter Updated Customer Service Information :</legend>
-<input type="hidden" name="txtdate" id="currentTime">
- 
-<script>
-var today = new Date();
-var time = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-  document.getElementById("currentTime").value = time;
-</script>
-    <div class="form-group">        
-    	<label for="">Staff ID</label>
-    	<input type="text" name="txtcsid"  value="<?php echo $csid ?>" readonly>
-    </div>
-
-    <div class="form-group">
-    	<label for="">Page</label>
-    	<input type="text" name="txtpagename"  value="<?php echo $pagename ?>" required/>
-    </div>
-
-	<div class="form-group">
-    	<label for="">Admin</label>
-    	<input type="text" name="txtadminname" value="<?php echo $adminname ?>" required/>
-    </div>
-
-    <div class="form-group">
-    	<label for="">Phone</label>
-    	<input type="mail" name="txtphone" value="<?php echo $phone ?>" required/>
-    </div>
-
-	<div class="form-group">
-    	<label for="">Username</label>
-    	<input type="text" name="txtusername" value="<?php echo $username ?>" required/>
-    </div>
-    
-	<div class="form-group">
-    	<label for="">Password</label>
-    	<input type="text" name="txtpassword" value="<?php echo $password ?>" required/>
-    </div>
-
-	<input type="submit" name="btnup" class="btn btn-secondary" value="Update">
-</fieldset>
-
-
-
-</form> -->
 <div id="body-section">
             <div class="gold-line-container">
                 <div class="left-gold-line"></div>

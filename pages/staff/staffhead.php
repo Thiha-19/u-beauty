@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="../index.css">
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-lg">
@@ -17,23 +17,23 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="customertable.php">C List</a>
+              </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="customertable.php">Customer</a>
+                <a class="nav-link active" aria-current="page" href="staffcustomer.php">Add C</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="btable.php">Booking</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="booking.php">Add B</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="ptable.php">Procedure</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link " href="cstable.php">Staff</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link " href="piechoose.php">Rating</a>
-              </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link" href="../logout.php">Logout</a>
                 </li>
             </ul>
           </div>

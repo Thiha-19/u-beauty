@@ -1,6 +1,6 @@
 <?php  
-include('connect.php');
-include('header.php');
+include('../connect.php');
+include('adminhead.php');
 
 if(isset($_POST['btnadd'])) 
 {

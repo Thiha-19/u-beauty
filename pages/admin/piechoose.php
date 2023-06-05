@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include('connect.php');
+include('../connect.php');
 include('adminhead.php');
 
 if(isset($_GET['csid']))
@@ -85,7 +85,7 @@ if(isset($_GET['csid']))
         ]);
 
         var options = {
-          title: 'Employee Rating Chart',
+          title: 'Booking Per Page',
           is3D: true,
         };
 

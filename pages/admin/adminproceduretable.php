@@ -1,10 +1,10 @@
 <?php
-	include('connect.php');
+	include('../connect.php');
 	include('adminhead.php');
 
-    if(isset($_POST['btnadd'])) 
+    if(isset($_POST['btnpro'])) 
 {
-    echo "<script>window.location='customerservice.php'</script>";
+    echo "<script>window.location='procedure.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -24,19 +24,19 @@
 		$('#tableid').DataTable();
 	} );
 </script>
-    <form action="cstable.php" method='post' style = "">
+    <form action="adminproceduretable.php" method='post' style = "">
     <fieldset>
-<legend>Staff List :</legend>
+<legend>Procedure List :</legend>
 <?php  
 $c_List="SELECT * 
-			 FROM customerservice
+			 FROM `procedure`
 			 ";
 $c_ret=mysqli_query($connection,$c_List);
 $c_count=mysqli_num_rows($c_ret);
 
 if ($c_count < 1) 
 {
-	echo "<p>No Staff Records Found.</p>";
+	echo "<p>No Procedure Records Found.</p>";
 }
 else
 {
@@ -45,12 +45,8 @@ else
 	<thead>
 	<tr>
 		<!-- <th>#</th> -->
-        <th>Staff ID</th>
-		<th>Page Name</th>
-		<th>Admin</th>
-		<th>Phone</th>
-		<th>Username</th>
-		<th>Password</th>
+        <th> ID</th>
+		<th>Procedure Name</th>
         
 	</tr>
 	</thead>
@@ -61,33 +57,25 @@ else
 		$rows=mysqli_fetch_array($c_ret);
 		//print_r($rows);
 
-		$csid=$rows['csid'];
-		$pagename=$rows['pageName'];
-		$adminname=$rows['adminName'];
-		$phone=$rows['phone'];
-		$username=$rows['userName'];
-		$password=$rows['password'];
+		$pid=$rows['pid'];
+		$pname=$rows['pName'];
 
 		echo "<tr>";
 		// echo "<td>" . ($i + 1) ."</td>";
-		echo "<td>$csid</td>";
-		echo "<td>$pagename</td>";
-		echo "<td>$adminname</td>";
-		echo "<td>$phone</td>";
-		echo "<td>$username</td>";        
-		echo "<td>$password</td>";
+		echo "<td>$pid</td>";
+		echo "<td>$pname</td>";
 		echo "<td>
-			  <a href='staffupdate.php?csid=$csid'>Update</a> 
+			  <a href='pupdate.php?pid=$pid'>Update</a> 
 			  </td>";
-		echo "<td>
-			  <a href='piechoose.php?csid=$csid'>Rating</a> 
+        echo "<td>
+			  <a href='pdelete.php?pid=$pid'>Delete</a> 
 			  </td>";
 		echo "</tr>";
 	}
 	 ?>
 	 </tbody>
 	</table>
-    <input type="submit" value="Add New Page" class="btn btn-secondary" name="btnadd"> 
+    <input type="submit" value="Add New Procedure" class="btn btn-secondary" name="btnpro"> 
 <?php
 }
 ?>
