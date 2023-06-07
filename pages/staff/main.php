@@ -17,6 +17,35 @@ if(isset($_SESSION['csid']))
 	$csid=$_SESSION['csid'];
 	$pagename=$data['pagename'];
 	$adminname=$data['adminname'];
+
+    function countdays($date)   
+	{
+		 global $return;
+		 $olddate =  substr($date, 4); 
+		 $newdate = date("Y") ."".$olddate; 
+		 $nextyear = date("Y")+1 ."".$olddate; 
+		 
+		 
+			if(strtotime($newdate) > strtotime(date("Y-m-d"))) 
+			{
+			$start_ts = strtotime($newdate); 
+			$end_ts = strtotime(date("Y-m-d"));
+			$diff = $end_ts - $start_ts; 
+			$n = round($diff / (60*60*24));
+			$return = substr($n, 1); 
+			return $return; 
+			}
+			else
+			{
+			$start_ts = strtotime(date("Y-m-d")); 
+			$end_ts = strtotime($nextyear); 
+			$diff = $end_ts - $start_ts; 
+			$n = round($diff / (60*60*24)); 
+			$return = $n; 
+			return $return; 
+			}
+		
+		}
 }
 else
 {

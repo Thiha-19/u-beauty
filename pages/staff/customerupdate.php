@@ -22,6 +22,7 @@ if(isset($_GET['cid']))
 	$dob=$data['dob'];
 	function countdays($date)   
 	{
+		 global $return;
 		 $olddate =  substr($date, 4); 
 		 $newdate = date("Y") ."".$olddate; 
 		 $nextyear = date("Y")+1 ."".$olddate; 

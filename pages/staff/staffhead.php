@@ -18,17 +18,11 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="customertable.php">C List</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="staffcustomer.php">Add C</a>
+                <a class="nav-link active" aria-current="page" href="customertable.php">Customer</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="btable.php">Booking</a>
               </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="booking.php">Add B</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="ptable.php">Procedure</a>
               </li>

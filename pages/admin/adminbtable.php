@@ -49,7 +49,7 @@ else
 <?php  
 $re_List="SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND p.pid = b.pid
+            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);

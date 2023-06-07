@@ -2,7 +2,7 @@
 	session_start();
 	include('../connect.php');
 	include('staffhead.php');
-
+	
 	if(isset($_SESSION['csid']))
 	{   
 		$csid=$_SESSION['csid'];
@@ -21,6 +21,7 @@
 	{
 		
 	}
+	
 
     if(isset($_POST['btnadd'])) 
 {
@@ -58,6 +59,7 @@ $c_count=mysqli_num_rows($c_ret);
 if ($c_count < 1) 
 {
 	echo "<p>No Customer Records Found.</p>";
+	 echo "<script>window.location='staffcustomer.php'</script>";
 }
 else
 {

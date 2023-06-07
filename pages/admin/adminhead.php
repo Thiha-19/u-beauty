@@ -29,9 +29,6 @@
               <li class="nav-item">
                 <a class="nav-link " href="cstable.php">Staff</a>
               </li> 
-              <li class="nav-item">
-                <a class="nav-link " href="piechoose.php">Rating</a>
-              </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../">Logout</a>
                 </li>

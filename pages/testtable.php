@@ -1,3 +1,10 @@
+<?php
+
+include('connect.php');
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,134 +56,76 @@
             <div class="left-gold-line"></div>
         </div>
         <div id="body-flex">
-            <div class="form-container">
-
-                <div class="form-outer-border">
-                    <form >
-                        <h1 class="form-title">Customer Registration</h1>
-                        <div class="row">
-                            <div class=" col-sm-12 col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="name" placeholder="name@example.com">
-                                    <label for="name">Name</label>
-                                </div>
-                            </div>
-                            <div class=" col-sm-12 col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                                    <label for="email">Email</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="phone" placeholder="phone@example.com">
-                                    <label for="phone">Phone</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="dob" placeholder="phone@example.com">
-                                    <label for="dob">Date of Birth</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea name="" id="address" class="form-control" cols="30" rows="5" style="height:1%" placeholder="hi"></textarea>
-                            <label for="address">Address</label>
-                        </div>
-                        <button class="u-btn-gold">
-                            Register
-                        </button>
-
-                    </form>
-                </div>
-            </div>
+        
             <br>
             <br>
             <div class="table-container ">
+            <?php  
+             $c_List="SELECT * 
+			 FROM customer
+			 ";
+$c_ret=mysqli_query($connection,$c_List);
+$c_count=mysqli_num_rows($c_ret);
+
+if ($c_count < 1) 
+{
+	echo "<p>No Customer Records Found.</p>";
+	 echo "<script>window.location='staffcustomer.php'</script>";
+}
+else
+{}
+?>
                 <table class="table table-hover " id="table">
                     <thead>
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Occupation</th>
+                        <th scope="col">Addresss</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Dob</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <?php 
+	for($i=0;$i<$c_count;$i++) 
+	{ 
+		$rows=mysqli_fetch_array($c_ret);
+		//print_r($rows);
+
+		$cid=$rows['cid'];
+		$cname=$rows['cName'];
+		$email=$rows['email'];
+		$job=$rows['job'];
+		$address=$rows['address'];
+		$phone=$rows['phone'];
+		$dob=$rows['dob'];
+
+		echo "<tr>";
+        echo "<td scope='row'>" . ($i + 1) ."</td>";
+		echo "<td>$cname</td>"; 
+		echo "<td>$email</td>";
+		echo "<td>$job</td>";
+		echo "<td>$address</td>";        
+		echo "<td>$phone</td>";
+		echo "<td>$dob</td>";
+		echo "<td>
+			  <a href='customerupdate.php?cid=$cid'>Update</a> 
+			  </td>";
+		echo "</tr>";
+	}
+	 ?>
+	 </tbody>
+     </table>
+                    <!-- <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr><tr>
-                        <th scope="row">9</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr><tr>
-                        <th scope="row">10</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr><tr>
-                        <th scope="row">11</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12</th>
-                        <td >Larry the Bird</td>
-                        <td>Thornton</td>
-                        <td>@twitter</td>
-                    </tr>
+                   
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
         </div>
@@ -184,11 +133,11 @@
       <footer>
       </footer>
 <!--    set type = text for example it would be hidden-->
-    <input type="text" id="customer-id">
+    <input type="text" id="cid">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script>
         $(document).ready(()=>{
-            let dataTable = $('#table').DataTable( {
+            let dataTable = $('table').DataTable( {
                 select: true,
                 info:false,
                 stateSave: true,
@@ -198,7 +147,7 @@
                     let data = dt.row({selected: true}).data()
                     console.log(data); // data[0] = first column data for example customer id
 
-                    $("#customer-id").val(data[0]);// to set the hidden input value
+                    $("cid").val(data[0]);// to set the hidden input value
                 })
         });
     </script>

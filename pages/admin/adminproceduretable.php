@@ -37,6 +37,7 @@ $c_count=mysqli_num_rows($c_ret);
 if ($c_count < 1) 
 {
 	echo "<p>No Procedure Records Found.</p>";
+	echo "<script>window.location='procedure.php'</script>";
 }
 else
 {

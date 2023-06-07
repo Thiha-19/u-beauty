@@ -44,7 +44,7 @@ else
 	<table id="tableid" class="table table-striped">
 	<thead>
 	<tr>
-		<!-- <th>#</th> -->
+		<th>#</th>
         <th> ID</th>
 		<th>Procedure Name</th>
         
@@ -61,7 +61,7 @@ else
 		$pname=$rows['pName'];
 
 		echo "<tr>";
-		// echo "<td>" . ($i + 1) ."</td>";
+		echo "<td>" . ($i + 1) ."</td>";
 		echo "<td>$pid</td>";
 		echo "<td>$pname</td>";
 		echo "</tr>";
