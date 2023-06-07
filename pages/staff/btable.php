@@ -57,6 +57,7 @@ $re_count=mysqli_num_rows($re_ret);
 if ($re_count < 1) 
 {
 	echo "<p>No Booking Records Found.</p>";
+	echo "<script>window.location='booking.php'</script>";
 }
 else
 {

@@ -44,7 +44,7 @@ else
 	<table id="tableid" class="table table-striped">
 	<thead>
 	<tr>
-		<th>#</th>
+		<th>Number</th>
         <th> ID</th>
 		<th>Procedure Name</th>
         
