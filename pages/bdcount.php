@@ -7,16 +7,7 @@
 	$data=mysqli_num_rows($query);
     $cname=$data['cName'];
     $dob=$data['dob'];
-    if ($data < 1) 
-    {
-	echo "<p>No Booking Records Found.</p>";
-	echo "<script>window.location='booking.php'</script>";
-    }
-    else
-    {
-        for($i=0;$i<$data;$i++) 
-	{ 
-    function countdays($date)   
+	function countdays($date)   
 	{
 		 global $return;
 		 $olddate =  substr($date, 4); 
@@ -44,6 +35,16 @@
 			}
 		
 		}
+    if ($data < 1) 
+    {
+	echo "<p>No Booking Records Found.</p>";
+	echo "<script>window.location='booking.php'</script>";
+    }
+    else
+    {
+        for($i=0;$i<$data;$i++) 
+	{ 
+		countdays();
     }
     }
 ?>

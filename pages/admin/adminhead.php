@@ -32,6 +32,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../
+                    ">Export</a>
+                </li>
             </ul>
           </div>
         </div>
