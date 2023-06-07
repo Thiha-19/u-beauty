@@ -5,8 +5,6 @@
 	
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_num_rows($query);
-    $cname=$data['cName'];
-    $dob=$data['dob'];
 	function countdays($date)   
 	{
 		 global $return;
@@ -35,18 +33,7 @@
 			}
 		
 		}
-    if ($data < 1) 
-    {
-	echo "<p>No Booking Records Found.</p>";
-	echo "<script>window.location='booking.php'</script>";
-    }
-    else
-    {
-        for($i=0;$i<$data;$i++) 
-	{ 
-		countdays();
-    }
-    }
+   
 ?>
 
 
@@ -59,7 +46,32 @@
     <title>Document</title>
 </head>
 <body>
-        Birthday:<?php echo $dob;?> <br>
-		Days left until next birthday:<?php echo countdays($dob);?><br>
+	<?php
+	
+	if ($data < 1) 
+    {
+	echo "<p>No Booking Records Found.</p>";
+	echo "<script>window.location='booking.php'</script>";
+    }
+    else
+    {
+        for($i=0;$i<$data;$i++) 
+	{ 
+		$rows=mysqli_fetch_array($query);
+		$cname=$rows['cName'];
+		$dob=$rows['dob'];
+		$bd = countdays($dob);
+		if ($bd<=10)
+		{
+			?>
+			<?php echo $cname;?>Days left until next birthday:<?php echo $bd;?><br> 
+			<?php
+		}
+    }
+    }
+	
+	?>
+        <!-- Birthday:<?php echo $dob;?> <br>
+		Days left until next birthday:<?php echo countdays($dob);?><br> -->
 </body>
 </html>
