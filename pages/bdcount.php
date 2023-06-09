@@ -58,17 +58,38 @@
         for($i=0;$i<$data;$i++) 
 	{ 
 		$rows=mysqli_fetch_array($query);
+		$cid=$rows['cid'];
 		$cname=$rows['cName'];
 		$dob=$rows['dob'];
 		$bd = countdays($dob);
+
 		if ($bd<=10)
 		{
 			?>
 			<?php echo $cname;?>Days left until next birthday:<?php echo $bd;?><br> 
 			<?php
+			$txt=$cname." has a birthday in ".$bd." days at ". $dob;
+			$Select="SELECT * FROM noti
+            WHERE log='$txt'";
+    		$retSelect=mysqli_query($connection,$Select);
+    		$Select_Count=mysqli_num_rows($retSelect);
+        
+    		if ($Select_Count>0) 
+        	{
+
+        	}
+        	else 
+			{
+			$insert="INSERT INTO `noti`
+			(`log`,`cid`) 
+			VALUES ('$txt','$cid')
+			";
+			$ret1=mysqli_query($connection,$insert); 
+				}
 		}
+	}
     }
-    }
+    
 	
 	?>
         <!-- Birthday:<?php echo $dob;?> <br>

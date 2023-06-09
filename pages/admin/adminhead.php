@@ -33,8 +33,7 @@
                     <a class="nav-link" href="../">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../
-                    ">Export</a>
+                    <a class="nav-link" href="exportsql.php">Export</a>
                 </li>
             </ul>
           </div>

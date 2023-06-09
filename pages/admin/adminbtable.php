@@ -103,8 +103,6 @@ else
 	 ?>
 	 </tbody>
 	</table>
-    <input type="submit" value="Add Booking" class="btn btn-secondary" name="btnadd"> 
-
 <?php
 }
 ?>
