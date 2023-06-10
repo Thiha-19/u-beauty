@@ -1,7 +1,8 @@
 <?php
+	session_start();
 	include('../connect.php');
 	include('adminhead.php');
-
+	$_SESSION['pid'] = $pid;
     if(isset($_POST['btnpro'])) 
 {
     echo "<script>window.location='procedure.php'</script>";
@@ -65,8 +66,10 @@ else
 		// echo "<td>" . ($i + 1) ."</td>";
 		echo "<td>$pid</td>";
 		echo "<td>$pname</td>";
+		
+
 		echo "<td>
-			  <a href='pupdate.php?pid=$pid'>Update</a> 
+			  <a href='pupdate.php?'>Update</a> 
 			  </td>";
         echo "<td>
 			  <a href='pdelete.php?pid=$pid'>Delete</a> 
