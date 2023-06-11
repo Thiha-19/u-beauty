@@ -1,54 +1,61 @@
-<?php
+<?php  
 include('../connect.php');
 include('staffhead.php');
 session_start();
 
-if (isset($_SESSION['csid'])) {
-    $csid = $_SESSION['csid'];
-
-    $select = "SELECT `csid`, `pagename`, `adminname`
+if(isset($_SESSION['csid']))
+{   
+	$csid=$_SESSION['csid'];
+    
+    $select="SELECT `csid`, `pagename`, `adminname`
     FROM `customerservice` 
     WHERE csid = '$csid'
     ";
-    $query = mysqli_query($connection, $select);
-    $data = mysqli_fetch_array($query);
-    $csid = $_SESSION['csid'];
-    $pagename = $data['pagename'];
-    $adminname = $data['adminname'];
-} else {
-
+	$query=mysqli_query($connection,$select);
+	$data=mysqli_fetch_array($query);
+	$csid=$_SESSION['csid'];
+	$pagename=$data['pagename'];
+	$adminname=$data['adminname'];
+}
+else
+{
+	
 }
 
-if (isset($_POST['btnadd'])) {
-    $cbocid = $_POST['cbocid'];
-    $txtcsid = $_POST['txtcsid'];
-    $cbopid = $_POST['cbopid'];
-    $txtbdate = $_POST['txtbdate'];
+if(isset($_POST['btnadd'])) 
+{
+	$cbocid=$_POST['cbocid'];
+	$txtcsid=$_POST['txtcsid'];
+	$cbopid=$_POST['cbopid'];
+	$txtbdate=$_POST['txtbdate'];
+	$currentdate = date('Y-m-d');
 
-    $Insert = "INSERT INTO `booking`
-		(`date`, `cid`, `csid`, `pid`) 
+		$Insert="INSERT INTO `booking`
+		(`date`, `status`, `cid`, `csid`, `pid`, `assignedDate`) 
 		VALUES 
-		('$txtbdate','$cbocid','$txtcsid','$cbopid')
+		('$txtbdate','Pending','$cbocid','$txtcsid','$cbopid','$currentdate')
 		";
-    $ret = mysqli_query($connection, $Insert);
+		$ret=mysqli_query($connection,$Insert);
 
-    if ($ret) {
-        echo "<script>window.alert('SUCCESS : New Booking Added')</script>";
-        echo "<script>window.location='btable.php'</script>";
-    } else {
-        echo "<p>Error : Something went wrong " . mysqli_error($connection) . "</p>";
-    }
-
+		if($ret) 
+		{	
+			echo "<script>window.alert('SUCCESS : New Booking Added')</script>";
+			echo "<script>window.location='btable.php'</script>";
+		}
+		else
+		{
+			echo "<p>Error : Something went wrong " . mysqli_error($connection) . "</p>";
+		}
+	
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Booking</title>
+	<title>Add Booking</title>
 
 
 </head>
-
 <body>
 
 
@@ -147,18 +154,19 @@ if (isset($_POST['btnadd'])) {
                             <select name="cbopid" class="form-control">
                                 <option>Choose Procedure</option>
                                 <?php
-                                $r_query = "SELECT * FROM `procedure`";
-                                $r_ret = mysqli_query($connection, $r_query);
-                                $r_count = mysqli_num_rows($r_ret);
+			$r_query="SELECT * FROM `procedure`";
+			$r_ret=mysqli_query($connection,$r_query);
+			$r_count=mysqli_num_rows($r_ret);
 
-                                for ($i = 0; $i < $r_count; $i++) {
-                                    $row = mysqli_fetch_array($r_ret);
-                                    $pid = $row['pid'];
-                                    $pname = $row['pName'];
+			for($i=0;$i<$r_count;$i++) 
+			{ 
+				$row=mysqli_fetch_array($r_ret);
+				$pid=$row['pid'];
+				$pname=$row['pName'];
 
-                                    echo "<option value='$pid'>$pid - $pname</option>";
-                                }
-                                ?>
+				echo "<option value='$pid'>$pid - $pname</option>";
+			}
+			?>
                             </select>
                         </div>
                     </div>

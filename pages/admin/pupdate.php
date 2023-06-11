@@ -2,8 +2,10 @@
 session_start();
 include('../connect.php');
 include('adminhead.php');
-echo $_SESSION['pid'];
-$pid = $_SESSION['pid'];
+
+if(isset($_GET['pid']))
+{
+	$pid=$_GET['pid'];
 
 	$select="select * from `procedure`
 			 where pid='$pid'";
@@ -11,23 +13,12 @@ $pid = $_SESSION['pid'];
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
 	$pid=$data['pid'];
-	$pname=$data['pName'];	
-// if(isset($_GET['pid']))
-// {
-// 	$pid=$_GET['pid'];
-
-// 	$select="select * from `procedure`
-// 			 where pid='$pid'";
+	$pname=$data['pName'];
+}
+else
+{
 	
-// 	$query=mysqli_query($connection,$select);
-// 	$data=mysqli_fetch_array($query);
-// 	$pid=$data['pid'];
-// 	$pname=$data['pName'];
-// }
-// else
-// {
-	
-// }
+}
 
 if(isset($_POST['btnupdate'])) 
 {	

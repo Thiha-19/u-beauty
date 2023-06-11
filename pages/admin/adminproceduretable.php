@@ -2,7 +2,7 @@
 	session_start();
 	include('../connect.php');
 	include('adminhead.php');
-	$_SESSION['pid'] = $pid;
+	
     if(isset($_POST['btnpro'])) 
 {
     echo "<script>window.location='procedure.php'</script>";
