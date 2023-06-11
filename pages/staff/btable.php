@@ -62,19 +62,20 @@ if ($re_count < 1)
 else
 {
 ?>
-	<table id="tableid" class="table table-striped">
-	<thead>
-	<tr>
-		<th>#</th>
-        <th>Booking ID</th>
-		<th>Date</th>
-		<th>Customer</th>
-		<th>Page</th>
-		<th>Procedure</th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php 
+    <table id="tableid" class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Booking ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Page</th>
+            <th>Procedure</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
 	for($i=0;$i<$re_count;$i++) 
 	{ 
 		$rows=mysqli_fetch_array($re_ret);
@@ -95,8 +96,6 @@ else
 		echo "<td>$procedure</td>";
 		echo "<td>
 			  <a href='bupdate.php?bid=$bid'>Update</a>
-			  </td>";
-		echo "<td>
 			  <a href='bdelete.php?bid=$bid'>Delete</a>
 			  </td>";
 		echo "</tr>";

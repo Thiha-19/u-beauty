@@ -19,14 +19,6 @@
 </head>
 <body >
 
-<script>
-	$(document).ready( function () {
-		$('#tableid').DataTable();
-	} );
-</script>
-    <form action="cstable.php" method='post' style = "">
-    <fieldset>
-<legend>Staff List :</legend>
 <?php  
 $c_List="SELECT * 
 			 FROM customerservice
@@ -43,61 +35,77 @@ if ($c_count < 1)
 else
 {
 ?>
-	<table id="tableid" class="table table-striped">
-	<thead>
-	<tr>
-		<!-- <th>#</th> -->
-        <th>Staff ID</th>
-		<th>Page Name</th>
-		<th>Admin</th>
-		<th>Phone</th>
-		<th>Username</th>
-		<th>Password</th>
-        
-	</tr>
-	</thead>
-	<tbody>
-	<?php 
+    <h1 class="form-title">Customer Registration</h1>
+    <div class="table-container ">
+        <table id="tableid" class="table">
+            <thead>
+            <tr>
+                <!-- <th>#</th> -->
+                <th>Staff ID</th>
+                <th>Page Name</th>
+                <th>Admin</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Bookings</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php
 	for($i=0;$i<$c_count;$i++) 
-	{ 
-		$rows=mysqli_fetch_array($c_ret);
-		//print_r($rows);
+	{
+        $rows = mysqli_fetch_array($c_ret);
+        //print_r($rows);
 
-		$csid=$rows['csid'];
-		$pagename=$rows['pageName'];
-		$adminname=$rows['adminName'];
-		$phone=$rows['phone'];
-		$username=$rows['userName'];
-		$password=$rows['password'];
+        $csid = $rows['csid'];
+        $pagename = $rows['pageName'];
+        $adminname = $rows['adminName'];
+        $phone = $rows['phone'];
+        $username = $rows['userName'];
+        $password = $rows['password'];
 
-		echo "<tr>";
-		// echo "<td>" . ($i + 1) ."</td>";
-		echo "<td>$csid</td>";
-		echo "<td>$pagename</td>";
-		echo "<td>$adminname</td>";
-		echo "<td>$phone</td>";
-		echo "<td>$username</td>";        
-		echo "<td>$password</td>";
-		echo "<td>
+        $List1 = "SELECT COUNT(bid) as bnum
+  FROM  booking
+  WHERE csid = $csid 
+  
+  ";
+        $ret1 = mysqli_query($connection, $List1);
+        $show1 = mysqli_fetch_array($ret1);
+
+        echo "<tr>";
+        // echo "<td>" . ($i + 1) ."</td>";
+        echo "<td>$csid</td>";
+        echo "<td>$pagename</td>";
+        echo "<td>$adminname</td>";
+        echo "<td>$phone</td>";
+        echo "<td>$username</td>";
+        echo "<td>$password</td>";
+        echo "<td>" . $show1['bnum'] . "</td>";
+        echo "<td>
 			  <a href='staffupdate.php?csid=$csid'>Update</a> 
-			  </td>";
-		echo "<td>
 			  <a href='piechoose.php?csid=$csid'>Rating</a> 
-			  </td>";
-		echo "<td>
 			  <a href='sdelete.php?csid=$csid'>Delete</a> 
 			  </td>";
-		echo "</tr>";
-	}
-	 ?>
-	 </tbody>
-	</table>
-    <input type="submit" value="Add New Page" class="btn btn-secondary" name="btnadd"> 
-<?php
+    }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <a href="customerservice.php" class="btn btn-secondary">Add New Page </a>
+    <?php
 }
 ?>
-</fieldset>
-</form>
-    
+
+<?php
+include('../footer.php'); ?>
+
+<script>
+    $(document).ready(function () {
+        $('#tableid').DataTable();
+    });
+</script>
+<!--<footer></footer>-->
 </body>
 </html>
