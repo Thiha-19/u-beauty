@@ -32,9 +32,9 @@ $data=mysqli_fetch_array($query);
             $currentdate = date('Y-m-d');
             
 
-            $rows=mysqli_fetch_array($query);
-            $csid=$rows['csid'];
-            $csname=$rows['adminName'];
+            $data=mysqli_fetch_array($query);
+            $csid=$data['csid'];
+            $csname=$data['adminName'];
             $ok="SELECT COUNT(b.bid) as bnum
             FROM  booking b, customerservice cs
             WHERE b.csid = $csid and b.assignedDate = $currentdate and b.csid = cs.csid
@@ -45,6 +45,7 @@ $data=mysqli_fetch_array($query);
            
                 ?>
                 <?php echo $csname?> has <?php echo $show?> bookings tdy<br> 
+                <?php echo $csname;?>Days left until next birthday:<?php echo $show;?><br> 
                 <?php
             
                
