@@ -42,17 +42,18 @@ if ($c_count < 1)
 else
 {
 ?>
-	<table id="tableid" class="table table-striped">
-	<thead>
-	<tr>
-		<!-- <th>#</th> -->
-        <th> ID</th>
-		<th>Procedure Name</th>
-        
-	</tr>
-	</thead>
-	<tbody>
-	<?php 
+    <table id="tableid" class="table table-striped">
+        <thead>
+        <tr>
+            <!-- <th>#</th> -->
+            <th> ID</th>
+            <th>Procedure Name</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <?php
 	for($i=0;$i<$c_count;$i++) 
 	{ 
 		$rows=mysqli_fetch_array($c_ret);
@@ -66,17 +67,14 @@ else
 		echo "<td>$pid</td>";
 		echo "<td>$pname</td>";
 		echo "<td>
-			  <a href='pupdate.php?pid=$pid'>Update</a> 
-			  </td>";
-        echo "<td>
+			  <a href='pupdate.php?pid=$pid'>Update</a>
 			  <a href='pdelete.php?pid=$pid'>Delete</a> 
 			  </td>";
-		echo "</tr>";
 	}
 	 ?>
-	 </tbody>
-	</table>
-    <input type="submit" value="Add New Procedure" class="btn btn-secondary" name="btnpro"> 
+        </tbody>
+    </table>
+    <a href="procedure.php" class="btn btn-secondary"> Add New Procedure</a>
 <?php
 }
 ?>

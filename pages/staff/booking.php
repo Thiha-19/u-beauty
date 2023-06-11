@@ -58,62 +58,105 @@ if(isset($_POST['btnadd']))
 <body>
 
 
-
-
 <div id="body-section">
-            <div class="gold-line-container">
-                <div class="left-gold-line"></div>
-                <div class="left-gold-line"></div>
-            </div>
-        <div class="gold-line-container">
-            <div class="left-gold-line"></div>
-            <div class="left-gold-line"></div>
+    <div class="gold-line-container">
+        <div class="left-gold-line"></div>
+        <div class="left-gold-line"></div>
+    </div>
+    <div class="gold-line-container">
+        <div class="left-gold-line"></div>
+        <div class="left-gold-line"></div>
+    </div>
+    <?php
+    $c_List = "SELECT * 
+			 FROM customer
+			 where csid='$csid'
+			 ";
+    $c_ret = mysqli_query($connection, $c_List);
+    $c_count = mysqli_num_rows($c_ret);
+
+    if ($c_count < 1) {
+        echo "<p>No Customer Records Found.</p>";
+        echo "<script>window.location='staffcustomer.php'</script>";
+    } else {
+        ?>
+        <h1 class="form-title">Customer List</h1>
+        <div class="table-container ">
+            <table id="tableid" class="table table-hover">
+                <thead>
+                <tr>
+                    <!-- <th>#</th> -->
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Occupation</th>
+                    <th>Addresss</th>
+                    <th>phone</th>
+                    <th>Dob</th>
+                    <th>Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                for ($i = 0; $i < $c_count; $i++) {
+                    $rows = mysqli_fetch_array($c_ret);
+                    //print_r($rows);
+
+                    $cid = $rows['cid'];
+                    $cname = $rows['cName'];
+                    $email = $rows['email'];
+                    $job = $rows['job'];
+                    $address = $rows['address'];
+                    $phone = $rows['phone'];
+                    $dob = $rows['dob'];
+
+                    echo "<tr>";
+                    echo "<td>$cid</td>";
+                    echo "<td>$cname</td>";
+                    echo "<td>$email</td>";
+                    echo "<td>$job</td>";
+                    echo "<td>$address</td>";
+                    echo "<td>$phone</td>";
+                    echo "<td>$dob</td>";
+                    echo "<td>
+			  <a href='customerupdate.php?cid=$cid'>Update</a> 
+			  </td>";
+                    echo "</tr>";
+                }
+                ?>
+                </tbody>
+            </table>
         </div>
-        <div class="form-container">
+        <?php
+    }
+    ?>
+    <div class="form-container" style="height:0;margin-top:10%;">
 
-            <div class="form-outer-border">
-        <form action="booking.php" method="post" enctype="multipart/form-data">
-            <h1 class="form-title">Booking Information</h1>
-            <div class="row">
-                <div class=" col-sm-12 col-md-6">
-                    <div class="form-floating mb-3">
-					<select name="cbocid" class="form-label">
-					<!-- <label for="name">Choose Customer</label> -->
-					
-			<option class="form-label" required>Choose Customer</option>
-			
-			<?php  
-			$d_query="SELECT * FROM customer where csid='$csid'";
-			$d_ret=mysqli_query($connection,$d_query);
-			$d_count=mysqli_num_rows($d_ret);
-
-			for($i=0;$i<$d_count;$i++) 
-			{ 
-				$row=mysqli_fetch_array($d_ret);
-				$cid=$row['cid'];
-				$cname=$row['cName'];
-
-				echo "<option value='$cid'>$cid - $cname</option>";
-			}
-			?>
-			</select>
-                        
+        <div class="form-outer-border">
+            <form action="booking.php" method="post" enctype="multipart/form-data">
+                <h1 class="form-title">Booking Information</h1>
+                <div class="row">
+                    <div class=" col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="hidden" id="customer-id" name="cbocid">
+                        </div>
+                    </div>
+                    <div class=" col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="txtmail" value="<?php echo $pagename ?>"
+                                   readonly placeholder="name@example.com">
+                            <label for="text">Page</label>
+                        </div>
                     </div>
                 </div>
-                <div class=" col-sm-12 col-md-6">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtmail"  value="<?php echo $pagename ?>" readonly placeholder="name@example.com">
-                        <label for="text">Page</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-floating mb-3">
-                        <!-- <label for="phone">Procedure</label> -->
-						<select name="cbopid" class="form-label">
-			<option>Choose Procedure</option>
-			<?php  
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-floating mb-3">
+                            <!-- <label for="phone">Procedure</label> -->
+                            <select name="cbopid" class="form-control">
+                                <option>Choose Procedure</option>
+                                <?php
 			$r_query="SELECT * FROM `procedure`";
 			$r_ret=mysqli_query($connection,$r_query);
 			$r_count=mysqli_num_rows($r_ret);
@@ -127,30 +170,48 @@ if(isset($_POST['btnadd']))
 				echo "<option value='$pid'>$pid - $pname</option>";
 			}
 			?>
-			</select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control"  name="txtbdate" >
-						<input type="hidden" name="txtcsid"  value="<?php echo $csid ?>" readonly>
+                    <div class="col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" name="txtbdate">
+                            <input type="hidden" name="txtcsid" value="<?php echo $csid ?>" readonly>
                         <label for="date">Booking Date</label>
                     </div>
                 </div>
             </div>
-            
-            <button class="u-btn-gold" name="btnadd">
-                Booking
-            </button>
 
-        </form>
-            </div>
+                <button class="u-btn-gold" name="btnadd">
+                    Booking
+                </button>
+
+            </form>
         </div>
+    </div>
 
-        </div>
-      <footer>
-      </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</div>
+<!--      <footer>-->
+<!--      </footer>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(() => {
+        let dataTable = $('#tableid').DataTable({
+            select: true,
+            info: false,
+            stateSave: true,
+            rowId: 'id',
+        });
+        dataTable.on('select', function (e, dt, type, indexes) {
+            let data = dt.row({selected: true}).data()
+            console.log(data); // data[0] = first column data for example customer id
 
+            $("#customer-id").val(data[0]);// to set the hidden input value
+
+        })
+    });
+</script>
 </body>
 </html>
