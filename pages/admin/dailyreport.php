@@ -1,16 +1,13 @@
 
 <?php
 include('../connect.php');
-$currentdate = date('Y-m-d');
-echo $currentdate;
-
-  $data="SELECT b.*, cs.adminName
-    FROM booking b, customerservice cs
-  WHERE b.csid = cs.csid 
-  ";
+$data="SELECT b.*, cs.adminName
+FROM booking b, customerservice cs
+WHERE b.csid = cs.csid 
+";
 
 $query=mysqli_query($connection,$data);
-$bcpunt=mysqli_fetch_array($query);
+$data=mysqli_fetch_array($query);
 
 ?>
 
@@ -32,18 +29,22 @@ $bcpunt=mysqli_fetch_array($query);
         // {
             for($i=0;$i<$data;$i++) 
         { 
+            $currentdate = date('Y-m-d');
+            
+
             $rows=mysqli_fetch_array($query);
             $csid=$rows['csid'];
             $csname=$rows['adminName'];
-            $ok="SELECT COUNT(bid) as bnum
-            FROM  booking
-            WHERE csid = $csid and b.assignedDate = $currentdate 
+            $ok="SELECT COUNT(b.bid) as bnum
+            FROM  booking b, customerservice cs
+            WHERE b.csid = $csid and b.assignedDate = $currentdate and b.csid = cs.csid
              ";
-             $ret1=mysqli_query($connection,$ok);
-    
+             
+             $ret=mysqli_query($connection,$ok);
+             $show = mysqli_fetch_array($ret);
            
                 ?>
-                <?php echo $csname;?> has <?php echo $ret1;?> bookings tdy<br> 
+                <?php echo $csname?> has <?php echo $show?> bookings tdy<br> 
                 <?php
             
                

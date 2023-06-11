@@ -19,6 +19,7 @@ if(isset($_GET['bid']))
     $page=$data['pageName'];
     $csname=$data['adminName'];
     $procedure=$data['pName'];
+    $status=$data['status'];
 }
 else
 {
@@ -29,14 +30,14 @@ if(isset($_POST['btnup']))
 {	
     $txtbid=$_POST['txtbid'];
 	$txtdate=$_POST['txtdate'];
-	$txtcname=$_POST['txtcname'];
 	$txtcsname=$_POST['txtcsname'];
-	$txtpname=$_POST['txtpname'];
+	$txtstatus=$_POST['txtstatus'];
 
 
 	$Update="UPDATE booking
 			 SET
-			 date='$txtdate'
+			 date='$txtdate',
+             status='$txtstatus'
 			 WHERE
 			 bid='$txtbid'
 			 ";
@@ -87,49 +88,7 @@ else
 
 </head>
 <body>
-<!-- 
 
-<form action="bupdate.php" method="post" >
-
-<fieldset class="text-center">
-<legend>Booking Update Information :</legend>
-
-
-    <div class="form-group">      
-		<label for="" class="form-label">Booking ID</label>  
-    	<input type="text" name="txtbid" id=""  value="<?php echo $bid ?>" readonly>
-    </div>
-
-	<div class="form-group">
-    	<label for="" class="form-label">Booking Date</label>
-		<input type="date" class="form-label" name="txtdate" id=""  value="<?php echo $date ?>" >
-		
-    </div>
-
-	<div class="form-group">
-    	<label for="" class="form-label">Customer Name</label>
-    	<input type="text" name="txtcname" id=""  value="<?php echo $cid ?>" readonly>
-    </div>
-
-    <div class="form-group">
-    	<label for="" class="form-label">Page Name</label>
-    	<input type="text" name="txtcsname" id=""  value="<?php echo $csid ?>" readonly>
-    </div>
-
-    <div class="form-group">
-    	<label for="" class="form-label">Procedure Name</label>
-    	<input type="text" name="txtpname" id=""  value="<?php echo $procedure ?>" readonly>
-    </div>
-
-
-
-	<input type="submit" name="btnup" class="btn btn-secondary" value="Update">
-	<input type="reset" class="btn btn-danger" value="Clear">
-</fieldset>
-
-
-
-</form> -->
 
 <div id="body-section">
             <div class="gold-line-container">
@@ -171,6 +130,19 @@ else
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control"  name="txtcsname" value="<?php echo $page ?>" readonly>
                         <label for="text">PageName</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                <div class="form-floating mb-3">
+                <select name="txtstatus" class="form-control">
+                     <option value="Pending" <?php echo ($status=="Pending")?"selected":  "" ?>>Pending</option>
+                     <option value="Arrived"<?php echo ($status=="Arrived")?"selected":"" ?>>Arrived</option>
+                     <option value="Canceled">Canceled</option>
+                     <option value="Confirmed">Confirmed</option>
+                </select>
+                        <label for="text">Status</label>
                     </div>
                 </div>
             </div>

@@ -71,6 +71,7 @@ else
             <th>Customer</th>
             <th>Page</th>
             <th>Procedure</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -86,6 +87,7 @@ else
         $cid=$rows['cName'];
         $csid=$rows['pageName'];
         $procedure=$rows['pName'];
+        $status=$rows['status'];
 
 		echo "<tr>";
 		echo "<td>" . ($i + 1) ."</td>";
@@ -94,6 +96,7 @@ else
 		echo "<td>$cid</td>";
 		echo "<td>$csid</td>";
 		echo "<td>$procedure</td>";
+		echo "<td>$status</td>";
 		echo "<td>
 			  <a href='bupdate.php?bid=$bid'>Update</a>
 			  <a href='bdelete.php?bid=$bid'>Delete</a>
