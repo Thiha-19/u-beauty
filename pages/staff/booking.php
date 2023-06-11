@@ -16,6 +16,7 @@ if(isset($_SESSION['csid']))
 	$csid=$_SESSION['csid'];
 	$pagename=$data['pagename'];
 	$adminname=$data['adminname'];
+	
 }
 else
 {
@@ -28,11 +29,12 @@ if(isset($_POST['btnadd']))
 	$txtcsid=$_POST['txtcsid'];
 	$cbopid=$_POST['cbopid'];
 	$txtbdate=$_POST['txtbdate'];
+	$currentdate = date('Y-m-d');
 	
 		$Insert="INSERT INTO `booking`
-		(`date`, `cid`, `csid`, `pid`) 
+		(`date`, `status`, `cid`, `csid`, `pid`, `assignedDate`) 
 		VALUES 
-		('$txtbdate','$cbocid','$txtcsid','$cbopid')
+		('$txtbdate','pending','$cbocid','$txtcsid','$cbopid','$currentdate')
 		";
 		$ret=mysqli_query($connection,$Insert);
 
