@@ -38,14 +38,6 @@ else
 </head>
 <body >
 
-<script>
-	$(document).ready( function () {
-		$('#tableid').DataTable();
-	} );
-</script>
-    <form action="btable.php" method='post' style = "">
-    <fieldset>
-<legend>Booking List :</legend>
 <?php  
 $re_List="SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
@@ -62,18 +54,21 @@ if ($re_count < 1)
 else
 {
 ?>
-    <table id="tableid" class="table table-striped">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Booking ID</th>
-            <th>Date</th>
-            <th>Customer</th>
-            <th>Page</th>
-            <th>Procedure</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
+<div id="body-section">
+    <h1 class="form-title mt-5">Booking List</h1>
+    <div class="table-container mb-5">
+        <table id="tableid" class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Booking ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Page</th>
+                <th>Procedure</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
         <?php
@@ -89,29 +84,41 @@ else
         $procedure=$rows['pName'];
         $status=$rows['status'];
 
-		echo "<tr>";
-		echo "<td>" . ($i + 1) ."</td>";
-		echo "<td>$bid</td>";
-		echo "<td>$date</td>";
-		echo "<td>$cid</td>";
-		echo "<td>$csid</td>";
-		echo "<td>$procedure</td>";
-		echo "<td>$status</td>";
-		echo "<td>
-			  <a href='bupdate.php?bid=$bid'>Update</a>
-			  <a href='bdelete.php?bid=$bid'>Delete</a>
+        echo "<tr>";
+        echo "<td>" . ($i + 1) . "</td>";
+        echo "<td>$bid</td>";
+        echo "<td>$date</td>";
+        echo "<td>$cid</td>";
+        echo "<td>$csid</td>";
+        echo "<td>$procedure</td>";
+        echo "<td>$status</td>";
+        echo "<td class='d-flex'>
+			  <a href='bupdate.php?bid=$bid'  class='u-btn-gold table-btn table-btn-blue'>Update</a>
+			  <a href='bdelete.php?bid=$bid'  class='u-btn-gold table-btn table-btn-red'>Delete</a>
 			  </td>";
-		echo "</tr>";
-	}
-	 ?>
-	 </tbody>
-	</table>
-    <input type="submit" value="Add Booking" class="btn btn-secondary" name="btnadd"> 
-
+        echo "</tr>";
+    }
+        ?>
+        </tbody>
+        </table>
+    </div>
+    <a href="booking.php" class="btn u-btn-gold table-outer-btn"> Add Booking </a>
+    <?php
+    }
+    ?>
+</div>
 <?php
-}
-?>
-</fieldset>
-</form>
+include('../footer.php'); ?>
+
+<script>
+    $(document).ready(function () {
+        $('#tableid').DataTable({
+            "columnDefs": [
+                {"width": "25%", "targets": -1}
+            ]
+        });
+    });
+</script>
+<!--<footer></footer>-->
 </body>
 </html>

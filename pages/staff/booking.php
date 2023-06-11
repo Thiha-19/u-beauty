@@ -16,7 +16,6 @@ if(isset($_SESSION['csid']))
 	$csid=$_SESSION['csid'];
 	$pagename=$data['pagename'];
 	$adminname=$data['adminname'];
-	
 }
 else
 {
@@ -30,11 +29,11 @@ if(isset($_POST['btnadd']))
 	$cbopid=$_POST['cbopid'];
 	$txtbdate=$_POST['txtbdate'];
 	$currentdate = date('Y-m-d');
-	
+
 		$Insert="INSERT INTO `booking`
 		(`date`, `status`, `cid`, `csid`, `pid`, `assignedDate`) 
 		VALUES 
-		('$txtbdate','pending','$cbocid','$txtcsid','$cbopid','$currentdate')
+		('$txtbdate','Pending','$cbocid','$txtcsid','$cbopid','$currentdate')
 		";
 		$ret=mysqli_query($connection,$Insert);
 
@@ -82,7 +81,7 @@ if(isset($_POST['btnadd']))
         echo "<script>window.location='staffcustomer.php'</script>";
     } else {
         ?>
-        <h1 class="form-title">Customer List</h1>
+        <h1 class="form-title" style="padding-top: 5%;">Customer List</h1>
         <div class="table-container ">
             <table id="tableid" class="table table-hover">
                 <thead>
@@ -95,7 +94,6 @@ if(isset($_POST['btnadd']))
                     <th>Addresss</th>
                     <th>phone</th>
                     <th>Dob</th>
-                    <th>Actions</th>
 
                 </tr>
                 </thead>
@@ -121,9 +119,6 @@ if(isset($_POST['btnadd']))
                     echo "<td>$address</td>";
                     echo "<td>$phone</td>";
                     echo "<td>$dob</td>";
-                    echo "<td>
-			  <a href='customerupdate.php?cid=$cid'>Update</a> 
-			  </td>";
                     echo "</tr>";
                 }
                 ?>
@@ -133,7 +128,7 @@ if(isset($_POST['btnadd']))
         <?php
     }
     ?>
-    <div class="form-container" style="height:0;margin-top:10%;">
+    <div class="form-container" style="padding-top:5%">
 
         <div class="form-outer-border">
             <form action="booking.php" method="post" enctype="multipart/form-data">
@@ -179,10 +174,10 @@ if(isset($_POST['btnadd']))
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" name="txtbdate">
                             <input type="hidden" name="txtcsid" value="<?php echo $csid ?>" readonly>
-                        <label for="date">Booking Date</label>
+                            <label for="date">Booking Date</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 <button class="u-btn-gold" name="btnadd">
                     Booking
@@ -193,8 +188,9 @@ if(isset($_POST['btnadd']))
     </div>
 
 </div>
-<!--      <footer>-->
-<!--      </footer>-->
+
+<?php
+include('../footer.php'); ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
