@@ -19,14 +19,6 @@
 </head>
 <body >
 
-<script>
-	$(document).ready( function () {
-		$('#tableid').DataTable();
-	} );
-</script>
-    <form action="ptable.php" method='post' style = "">
-    <fieldset>
-<legend>Procedure List :</legend>
 <?php  
 $c_List="SELECT * 
 			 FROM `procedure`
@@ -41,39 +33,53 @@ if ($c_count < 1)
 else
 {
 ?>
-	<table id="tableid" class="table table-striped">
-	<thead>
-	<tr>
-		<th>Number</th>
-        <th> ID</th>
-		<th>Procedure Name</th>
-        
-	</tr>
-	</thead>
-	<tbody>
-	<?php 
-	for($i=0;$i<$c_count;$i++) 
-	{ 
-		$rows=mysqli_fetch_array($c_ret);
-		//print_r($rows);
+<div id="body-section">
+    <h1 class="form-title mt-5">Procedure List</h1>
+    <div class="table-container mb-5">
+        <table id="tableid" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th> ID</th>
+                <th>Procedure Name</th>
 
-		$pid=$rows['pid'];
-		$pname=$rows['pName'];
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            for($i=0; $i<$c_count; $i++) {
+                $rows=mysqli_fetch_array($c_ret);
+                //print_r($rows);
 
-		echo "<tr>";
-		echo "<td>" . ($i + 1) ."</td>";
-		echo "<td>$pid</td>";
-		echo "<td>$pname</td>";
-		echo "</tr>";
-	}
-	 ?>
-	 </tbody>
-	</table>
+                $pid=$rows['pid'];
+                $pname=$rows['pName'];
+
+                echo "<tr>";
+                echo "<td>" . ($i + 1) ."</td>";
+                echo "<td>$pid</td>";
+                echo "<td>$pname</td>";
+                echo "</tr>";
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+    }
+    ?>
+</div>
 <?php
-}
-?>
-</fieldset>
-</form>
-    
+include('../footer.php'); ?>
+
+<script>
+    $(document).ready(function () {
+        $('#tableid').DataTable({
+            "columnDefs": [
+                // {"width": "25%", "targets": -1}
+            ]
+        });
+    });
+</script>
+<!--<footer></footer>-->
 </body>
 </html>
