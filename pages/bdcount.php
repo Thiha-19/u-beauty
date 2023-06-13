@@ -63,7 +63,7 @@
 		$dob=$rows['dob'];
 		$bd = countdays($dob);
 
-		if ($bd<=10)
+		if ($bd<=3)
 		{
 			?>
 			<?php echo $cname;?>Days left until next birthday:<?php echo $bd;?><br> 
