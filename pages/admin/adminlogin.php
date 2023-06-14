@@ -13,7 +13,7 @@ if(isset($_POST['btnlogin']))
 	if($txtuname == 'admin' && $txtpassword == 'admin123') 
 	{   
 			echo "<script>window.alert('Success : Admin Login Success')</script>";
-			echo "<script>window.location='adminmain.php'</script>";       
+			echo "<script>window.location='adminctable.php'</script>";       
 	}
 	else
 	{

@@ -39,9 +39,10 @@ else
 <body >
 
 <?php  
+$tomorrow=date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+1, date("Y")));
 $re_List="SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND b.csid =cs.csid AND p.pid = b.pid and b.csid = '$csid'
+            where b.cid = c.cid AND b.csid =cs.csid AND p.pid = b.pid and b.csid = '$csid' AND b.date = '$tomorrow'
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
@@ -49,7 +50,6 @@ $re_count=mysqli_num_rows($re_ret);
 if ($re_count < 1) 
 {
 	echo "<p>No Booking Records Found.</p>";
-	echo "<script>window.location='booking.php'</script>";
 }
 else
 {
@@ -94,7 +94,6 @@ else
         echo "<td>$status</td>";
         echo "<td class='d-flex'>
 			  <a href='bupdate.php?bid=$bid'  class='u-btn-gold table-btn table-btn-blue'>Update</a>
-			  
 			  </td>";
         echo "</tr>";
     }
@@ -102,12 +101,12 @@ else
         </tbody>
         </table>
     </div>
-    <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
+    <!-- <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
 
-        <a href="booking.php" class="btn u-btn-gold table-outer-btn px-5" style="margin:0;"> Add Booking </a>
-        <a href="stafftdybk.php" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
-        <a href="stafftmrbk.php" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
-    </div>
+        <a href="booking.php" class="btn u-btn-gold table-outer-btn px-4" style="margin:0;"> Add Booking </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
+    </div> -->
     <?php
     }
     ?>
