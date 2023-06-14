@@ -18,8 +18,6 @@ if (isset($_SESSION['csid'])) {
 } else {
 
 }
-
-
 if (isset($_POST['btnadd'])) {
     echo "<script>window.location='staffcustomer.php'</script>";
 }
