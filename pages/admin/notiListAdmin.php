@@ -1,6 +1,6 @@
 <?php
-include('connect.php');
-include('header.php');
+include('../connect.php');
+include('adminhead.php');
 
 if (isset($_POST['btnadd'])) {
     echo "<script>window.location='customerservice.php'</script>";
@@ -13,8 +13,6 @@ if (isset($_POST['btnadd'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script type="text/javascript" src="js/jquery-3.1.1.slim.min.js"></script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +29,8 @@ if ($c_count < 1) {
 
 } else {
     ?>
-    <h1 class="form-title">Notifications</h1>
+<div id="body-section">
+    <h1 class="form-title mt-5">Notifications</h1>
     <div class="table-container ">
         <table id="tableid" class="table">
             <thead>
@@ -57,12 +56,13 @@ if ($c_count < 1) {
             </tbody>
         </table>
     </div>
-    <?php
-}
-?>
 
+    <?php
+    }
+    ?>
+</div>
 <?php
-include('footer.php'); ?>
+include('../footer.php'); ?>
 
 <script>
     $(document).ready(function () {

@@ -102,7 +102,12 @@ else
         </tbody>
         </table>
     </div>
-    <a href="booking.php" class="btn u-btn-gold table-outer-btn"> Add Booking </a>
+    <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
+
+        <a href="booking.php" class="btn u-btn-gold table-outer-btn px-4" style="margin:0;"> Add Booking </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
+    </div>
     <?php
     }
     ?>
