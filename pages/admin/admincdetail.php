@@ -61,7 +61,7 @@ if(isset($_POST['btnup']))
 }
 else
 {
-		echo "<p>Error : Something went wrong in Process" . mysqli_error($connection) . "</p>";
+    
 }
 
 

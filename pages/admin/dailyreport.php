@@ -1,13 +1,14 @@
 
 <?php
 include('../connect.php');
-$data="SELECT b.*, cs.adminName
-FROM booking b, customerservice cs
-WHERE b.csid = cs.csid 
+$data1="SELECT *
+FROM customerservice 
 ";
 
-$query=mysqli_query($connection,$data);
-$data=mysqli_fetch_array($query);
+$query=mysqli_query($connection,$data1);
+$data1=mysqli_fetch_array($query);
+$dcount=mysqli_num_rows($query);
+
 
 ?>
 
@@ -19,36 +20,42 @@ $data=mysqli_fetch_array($query);
     <title>Document</title>
 </head>
 <body>
-<?php
-// if ($data < 1)
-// {
-// echo "<p>No Booking Records Found for Today.</p>";
-// echo "<script>window.location='booking.php'</script>";
-// }
-// else
-// {
-for ($i = 0; $i < $data; $i++) {
-    $currentdate = date('Y-m-d');
-
-
-    $data = mysqli_fetch_array($query);
-    $csid = $data['csid'];
-    $csname = $data['adminName'];
-    $ok = "SELECT COUNT(b.bid) as bnum
-            FROM  booking b, customerservice cs
-            WHERE b.csid = $csid and b.assignedDate = $currentdate and b.csid = cs.csid
-             ";
-
-    $ret = mysqli_query($connection, $ok);
-    $show = mysqli_fetch_array($ret);
-
-    ?>
-    <?php echo $csname ?> has <?php echo $show['bnum'] ?> bookings tdy<br>
     <?php
+        // if ($data < 1) 
+        // {
+        // echo "<p>No Booking Records Found for Today.</p>";
+        // echo "<script>window.location='booking.php'</script>";
+        // }
+        // else
+        // {
+            for($i=0;$i<$dcount;$i++) 
+        { 
+            $currentdate = date('Y-m-d');
+            
 
+            $csid=$data1['csid'];
+            $csname=$data1['adminName'];
+            $data1=mysqli_fetch_array($query);
 
-}
-// }
-?>
+            $ok="SELECT distinct COUNT(b.bid) as bnum
+            FROM  booking b, customerservice cs
+            WHERE b.csid = '$csid' and b.assignedDate = '$currentdate' and b.csid = cs.csid and b.status='Confirmed'
+             ";
+             
+             $ret=mysqli_query($connection,$ok);
+             $show = mysqli_fetch_array($ret);
+           
+                ?>
+                <?php echo $csname?> has <?php echo $show['bnum']?> bookings tdy<br> 
+                <?php
+            
+               
+               
+            
+        }
+        // }
+    ?>
 </body>
 </html>
+
+
