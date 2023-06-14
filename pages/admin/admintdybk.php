@@ -30,12 +30,14 @@
 <body >
 
 <?php
+$currentdate = date('Y-m-d');
 $re_List = "SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid
+            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid AND b.date = '$currentdate'
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
+echo $re_count;
 
 if ($re_count < 1) 
 {
@@ -45,7 +47,7 @@ else
 {
 ?>
 <div id="body-section">
-    <h1 class="form-title mt-5">Booking List</h1>
+    <h1 class="form-title mt-5">Today Booking List</h1>
     <div class="table-container mb-5">
         <table id="tableid" class="table">
             <thead>
