@@ -30,9 +30,10 @@
 <body >
 
 <?php
+$tomorrow=date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+1, date("Y")));
 $re_List = "SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid
+            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid AND b.date = $tomorrow
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
@@ -45,7 +46,7 @@ else
 {
 ?>
 <div id="body-section">
-    <h1 class="form-title mt-5">Booking List</h1>
+    <h1 class="form-title mt-5">Tomorrow Booking List</h1>
     <div class="table-container mb-5">
         <table id="tableid" class="table">
             <thead>
@@ -57,6 +58,7 @@ else
                 <th>Page</th>
                 <th>Procedure</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -80,14 +82,14 @@ else
                 echo "<td>$csid</td>";
                 echo "<td>$procedure</td>";
                 echo "<td>$status</td>";
+                echo "<td class='d-flex '>
+			  <a href='adminbupdate.php?bid=$bid' class='u-btn-gold table-btn table-btn-blue'>Update</a>
+			  <a href='bdelete.php?bid=$bid' class='u-btn-gold table-btn table-btn-red'>Delete</a>
+			  </td>";
             }
             ?>
             </tbody>
         </table>
-    </div>
-    <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
-        <a href="" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
-        <a href="" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
     </div>
     <?php
     }
