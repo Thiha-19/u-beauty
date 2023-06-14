@@ -39,7 +39,7 @@ $dcount=mysqli_num_rows($query);
 
             $ok="SELECT distinct COUNT(b.bid) as bnum
             FROM  booking b, customerservice cs
-            WHERE b.csid = '$csid' and b.assignedDate = '$currentdate' and b.csid = cs.csid
+            WHERE b.csid = '$csid' and b.assignedDate = '$currentdate' and b.csid = cs.csid and b.status='Confirmed'
              ";
              
              $ret=mysqli_query($connection,$ok);

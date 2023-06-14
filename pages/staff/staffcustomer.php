@@ -93,7 +93,7 @@ if(isset($_POST['btnadd']))
                 <div class=" col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
                     <input type="hidden" class="form-control" name="txtcsid" value="<?php echo $csid ?>">
-                        <input type="text" class="form-control" name="txtcname" placeholder="name@example.com">
+                        <input type="text" class="form-control" name="txtcname" placeholder="name@example.com" required>
                         <label for="name"> Customer Name</label>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ if(isset($_POST['btnadd']))
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="txtphone" placeholder="phone@example.com">
+                        <input type="text" class="form-control" name="txtphone" placeholder="phone@example.com" required>
                         <label for="phone">Phone</label>
                     </div>
                 </div>
