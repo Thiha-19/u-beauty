@@ -58,7 +58,7 @@ else
                 <th>Page</th>
                 <th>Procedure</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <!-- <th>Actions</th> -->
             </tr>
             </thead>
             <tbody>
@@ -82,10 +82,10 @@ else
                 echo "<td>$csid</td>";
                 echo "<td>$procedure</td>";
                 echo "<td>$status</td>";
-                echo "<td class='d-flex '>
-			  <a href='adminbupdate.php?bid=$bid' class='u-btn-gold table-btn table-btn-blue'>Update</a>
-			  <a href='bdelete.php?bid=$bid' class='u-btn-gold table-btn table-btn-red'>Delete</a>
-			  </td>";
+            //     echo "<td class='d-flex '>
+			//   <a href='adminbupdate.php?bid=$bid' class='u-btn-gold table-btn table-btn-blue'>Update</a>
+			//   <a href='bdelete.php?bid=$bid' class='u-btn-gold table-btn table-btn-red'>Delete</a>
+			//   </td>";
             }
             ?>
             </tbody>

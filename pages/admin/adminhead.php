@@ -38,11 +38,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="exportsql.php">Export</a>
-                </li>
                 <li>
                     <a href="notiListAdmin.php">
+                        <?php
+                            $currentdate = date('Y-m-d');
+                            $count = "SELECT COUNT(nid) as nnum
+                            FROM noti
+                            WHERE createdDate = '$currentdate'
+                            ";
+                            $ret=mysqli_query($connection,$count);
+                            $res = mysqli_fetch_array($ret);
+
+                        ?>
 
                         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

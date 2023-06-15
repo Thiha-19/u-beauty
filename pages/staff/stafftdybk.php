@@ -1,16 +1,25 @@
 <?php
 	session_start();
 	include('../connect.php');
-	include('adminhead.php');
+	include('staffhead.php');
 
-	
+	if(isset($_SESSION['csid']))
+{   
+	$csid=$_SESSION['csid'];
+    
     $select="SELECT `csid`, `pagename`, `adminname`
-    FROM `customerservice`
+    FROM `customerservice` 
+    WHERE csid = '$csid'
     ";
 	$query=mysqli_query($connection,$select);
 	$data=mysqli_fetch_array($query);
+	$csid=$_SESSION['csid'];
 	
-
+}
+else
+{
+	
+}
 
 	if(isset($_POST['btnadd'])) 
 	{
@@ -29,43 +38,44 @@
 </head>
 <body >
 
-<?php
-$tomorrow=date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+1, date("Y")));
-$re_List = "SELECT b.*, c.*, cs.*, p.*
+<?php  
+$currentdate = date('Y-m-d');
+$re_List="SELECT b.*, c.*, cs.*, p.*
             FROM booking b, customer c, customerservice cs, `procedure` p
-            where b.cid = c.cid AND p.pid = b.pid AND b.csid = cs.csid AND b.date = '$tomorrow'
+            where b.cid = c.cid AND b.csid =cs.csid AND p.pid = b.pid and b.csid = '$csid' AND b.date = '$currentdate'
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
 
 if ($re_count < 1) 
 {
-	echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Booking Records for Tomorrow.</h1>';
+	echo "<p>No Booking Records Found.</p>";
 }
 else
 {
 ?>
 <div id="body-section">
-    <h1 class="form-title mt-5">Tomorrow Booking List</h1>
+    <h1 class="form-title mt-5">Booking List</h1>
     <div class="table-container mb-5">
         <table id="tableid" class="table">
             <thead>
             <tr>
-                <th>No</th>
+                <th>#</th>
                 <th>Booking ID</th>
                 <th>Date</th>
                 <th>Customer</th>
                 <th>Page</th>
                 <th>Procedure</th>
                 <th>Status</th>
-                <!-- <th>Actions</th> -->
+                <th>Actions</th>
             </tr>
-            </thead>
-            <tbody>
-            <?php
-            for ($i = 0; $i < $re_count; $i++) {
-                $rows = mysqli_fetch_array($re_ret);
-                //print_r($rows);
+        </thead>
+        <tbody>
+        <?php
+	for($i=0;$i<$re_count;$i++) 
+	{ 
+		$rows=mysqli_fetch_array($re_ret);
+		//print_r($rows);
 
 		$bid=$rows['bid'];
         $date=$rows['date'];
@@ -74,23 +84,30 @@ else
         $procedure=$rows['pName'];
         $status=$rows['status'];
 
-                echo "<tr>";
-                echo "<td>" . ($i + 1) . "</td>";
-                echo "<td>$bid</td>";
-                echo "<td>$date</td>";
-                echo "<td>$cid</td>";
-                echo "<td>$csid</td>";
-                echo "<td>$procedure</td>";
-                echo "<td>$status</td>";
-            //     echo "<td class='d-flex '>
-			//   <a href='adminbupdate.php?bid=$bid' class='u-btn-gold table-btn table-btn-blue'>Update</a>
-			//   <a href='bdelete.php?bid=$bid' class='u-btn-gold table-btn table-btn-red'>Delete</a>
-			//   </td>";
-            }
-            ?>
-            </tbody>
+        echo "<tr>";
+        echo "<td>" . ($i + 1) . "</td>";
+        echo "<td>$bid</td>";
+        echo "<td>$date</td>";
+        echo "<td>$cid</td>";
+        echo "<td>$csid</td>";
+        echo "<td>$procedure</td>";
+        echo "<td>$status</td>";
+        echo "<td class='d-flex'>
+			  <a href='bupdate.php?bid=$bid'  class='u-btn-gold table-btn table-btn-blue'>Update</a>
+			
+			  </td>";
+        echo "</tr>";
+    }
+        ?>
+        </tbody>
         </table>
     </div>
+    <!-- <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
+
+        <a href="booking.php" class="btn u-btn-gold table-outer-btn px-4" style="margin:0;"> Add Booking </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
+        <a href="" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
+    </div> -->
     <?php
     }
     ?>
@@ -102,7 +119,7 @@ include('../footer.php'); ?>
     $(document).ready(function () {
         $('#tableid').DataTable({
             "columnDefs": [
-                {"width": "16%", "targets": -1}
+                {"width": "25%", "targets": -1}
             ]
         });
     });
