@@ -1,7 +1,21 @@
 <?php
+session_start();
 include('../connect.php');
-include('adminhead.php');
+include('staffhead.php');
 
+if (isset($_SESSION['csid'])) {
+    $csid = $_SESSION['csid'];
+
+    $select = "SELECT `csid`
+		FROM `customerservice` 
+		WHERE csid = '$csid'
+		";
+    $query = mysqli_query($connection, $select);
+    $data = mysqli_fetch_array($query);
+    $csid = $_SESSION['csid'];
+} else {
+
+}
 if (isset($_POST['btnadd'])) {
     echo "<script>window.location='customerservice.php'</script>";
 }
@@ -17,8 +31,9 @@ if (isset($_POST['btnadd'])) {
 <body>
 
 <?php
-$c_List = "SELECT * 
-			 FROM noti
+$c_List = "SELECT DISTINCT n.*, cs.csid, c.csid, b.status
+FROM noti n, customerservice cs, customer c
+WHERE cs.csid = c.csid AND cs.csid = '$csid' AND c.cid = n.cid
 			 ";
 $c_ret = mysqli_query($connection, $c_List);
 $c_count = mysqli_num_rows($c_ret);

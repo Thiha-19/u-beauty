@@ -3,34 +3,14 @@ session_start();
 include('../connect.php');
 include('adminhead.php');
 
-$data="SELECT cs.*, b.*
-FROM booking b, customerservice cs
-WHERE b.csid = cs.csid
+$pie="SELECT *
+FROM customerservice
 ";
 
 	
-	$query=mysqli_query($connection,$name);
+	$query=mysqli_query($connection,$pie);
 	$data=mysqli_fetch_array($query);
-  $cname=$data['adminname'];
-
-  
-  $List1="SELECT COUNT(bid) as bnum
-  FROM  booking
-  WHERE csid = $csid 
-  
-  ";
-  $List2="SELECT COUNT(bid) as bnum1
-  FROM  booking
-  WHERE csid != $csid 
-  
-  ";
-
-  $ret1=mysqli_query($connection,$List1);
-  $ret2=mysqli_query($connection,$List2);
- 
-
-
-   
+  $pcount=mysqli_num_rows($query); 
 
 
 ?>
@@ -45,11 +25,25 @@ WHERE b.csid = cs.csid
         var data = google.visualization.arrayToDataTable([
           ['type', 'date'],
           <?php
+        for($i=0;$i<$pcount;$i++)
+        {
+          $csid=$data['csid'];
+          $pname=$data['pageName'];
+          $data=mysqli_fetch_array($query);
+
+  
+          $List1="SELECT COUNT(bid) as bnum
+          FROM  booking
+          WHERE csid = $csid 
+  
+          ";
+          
+
+          $ret1=mysqli_query($connection,$List1);
           $show1 = mysqli_fetch_array($ret1);
-          $show2 = mysqli_fetch_array($ret2);
-            echo "['$cname', ".$show1['bnum']."],";
-            echo "['Other', ".$show2['bnum1']."],";
-      ?>
+            echo "['$pname', ".$show1['bnum']."],";
+        }
+    ?>
         ]);
 
         var options = {
@@ -63,6 +57,7 @@ WHERE b.csid = cs.csid
     </script>
   </head>
   <body>
+    
     <table>
       <tr>
         <td>

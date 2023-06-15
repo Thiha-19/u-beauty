@@ -29,8 +29,8 @@ $c_count=mysqli_num_rows($c_ret);
 
 if ($c_count < 1) 
 {
-	echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Procedure Records Found.</h1>';
-    echo "<script>window.location='procedure.php'</script>";
+	echo "<p>No Procedure Records Found.</p>";
+	echo "<script>window.location='procedure.php'</script>";
 }
 else
 {
@@ -72,7 +72,7 @@ else
             </tbody>
         </table>
     </div>
-    <a href="procedure.php" class="btn mt-5 u-btn-gold table-outer-btn">Add New Procedure</a>
+    <a href="procedure.php" class="btn mt-5 u-btn-gold table-outer-btn"> Add New Procedure</a>
     <?php
     }
     ?>
