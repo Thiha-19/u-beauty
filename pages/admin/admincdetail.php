@@ -99,8 +99,6 @@ else
 </head>
 <body>
 
-Birthday:<?php echo $dob;?> <br>
-		Days left until next birthday:<?php echo countdays($dob);?><br>
 <div id="body-section">
             <div class="gold-line-container">
                 <div class="left-gold-line"></div>
