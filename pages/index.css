@@ -58,6 +58,7 @@ font-size: 1.5rem !important;
 #body-section {
     width: 100%;
     min-height: 100%;
+    height: 100vh;
     position: relative;
     padding-bottom: 10%;
 }
@@ -242,7 +243,6 @@ footer {
 /*#region Buttons*/
 .table-outer-btn {
     width: 10%;
-    height: 5%;
     margin-left: auto;
     margin-right: 10%;
     padding: 1% 0;

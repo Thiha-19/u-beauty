@@ -37,11 +37,10 @@ $re_List = "SELECT b.*, c.*, cs.*, p.*
 			 ";
 $re_ret=mysqli_query($connection,$re_List);
 $re_count=mysqli_num_rows($re_ret);
-echo $re_count;
 
 if ($re_count < 1) 
 {
-	echo "<p>No Booking Records Found.</p>";
+	echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Booking Records for Today</h1>';
 }
 else
 {
