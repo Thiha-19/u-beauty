@@ -119,10 +119,7 @@ if ($c_count < 1) {
                 <th>Customer ID</th>
                 <th>Customer Name</th>
                 <th>Email</th>
-                <th>Occupation</th>
-                <th>Addresss</th>
-                <th>phone</th>
-                <th>Dob</th>
+                <th>Phone</th>
                 <th>Actions</th>
 
             </tr>
@@ -145,10 +142,7 @@ if ($c_count < 1) {
                 echo "<td>$cid</td>";
                 echo "<td>$cname</td>";
                 echo "<td>$email</td>";
-                echo "<td>$job</td>";
-                echo "<td>$address</td>";
                 echo "<td>$phone</td>";
-                echo "<td>$dob</td>";
                 echo "<td class='d-flex '>
 			  <a href='admincdetail.php?cid=$cid' class='u-btn-gold table-btn'>Detail</a>
 			  <a href='../cdelete.php?cid=$cid'class='u-btn-gold table-btn table-btn-red'>Delete</a> 
