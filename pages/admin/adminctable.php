@@ -3,7 +3,9 @@ session_start();
 include('../connect.php');
 include('adminhead.php');
 
-$select="select * from customer
+$select="select c.*, b.status
+from customer c, booking b
+where b.status = 'Confirmed' AND b.cid = c.cid
 		    ";
 	
 	$query=mysqli_query($connection,$select);
@@ -106,7 +108,7 @@ $c_ret = mysqli_query($connection, $c_List);
 $c_count = mysqli_num_rows($c_ret);
 
 if ($c_count < 1) {
-    echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Customer Records Found.</h1>';
+    echo "<p>No Customer Records Found.</p>";
 } else {
 ?>
 <div id="body-section">
@@ -119,7 +121,10 @@ if ($c_count < 1) {
                 <th>Customer ID</th>
                 <th>Customer Name</th>
                 <th>Email</th>
-                <th>Phone</th>
+                <th>Occupation</th>
+                <th>Addresss</th>
+                <th>phone</th>
+                <th>Dob</th>
                 <th>Actions</th>
 
             </tr>
@@ -142,7 +147,10 @@ if ($c_count < 1) {
                 echo "<td>$cid</td>";
                 echo "<td>$cname</td>";
                 echo "<td>$email</td>";
+                echo "<td>$job</td>";
+                echo "<td>$address</td>";
                 echo "<td>$phone</td>";
+                echo "<td>$dob</td>";
                 echo "<td class='d-flex '>
 			  <a href='admincdetail.php?cid=$cid' class='u-btn-gold table-btn'>Detail</a>
 			  <a href='../cdelete.php?cid=$cid'class='u-btn-gold table-btn table-btn-red'>Delete</a> 
