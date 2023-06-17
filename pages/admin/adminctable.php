@@ -108,7 +108,7 @@ $c_ret = mysqli_query($connection, $c_List);
 $c_count = mysqli_num_rows($c_ret);
 
 if ($c_count < 1) {
-    echo "<p>No Customer Records Found.</p>";
+    echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Customer Records</h1>';
 } else {
 ?>
 <div id="body-section">
@@ -120,7 +120,6 @@ if ($c_count < 1) {
                 <!-- <th>#</th> -->
                 <th>Customer ID</th>
                 <th>Customer Name</th>
-                <th>Email</th>
                 <th>phone</th>
                 <th>Actions</th>
 

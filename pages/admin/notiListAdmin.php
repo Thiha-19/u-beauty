@@ -24,7 +24,7 @@ $c_ret = mysqli_query($connection, $c_List);
 $c_count = mysqli_num_rows($c_ret);
 
 if ($c_count < 1) {
-    echo "<p>No Staff Records Found.</p>";
+    echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Notification Records Found</h1>';
     echo "<script>window.location='adminmain.php'</script>";
 
 } else {

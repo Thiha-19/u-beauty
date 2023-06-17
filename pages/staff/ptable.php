@@ -28,7 +28,7 @@ $c_count=mysqli_num_rows($c_ret);
 
 if ($c_count < 1) 
 {
-	echo "<p>No Procedure Records Found.</p>";
+    echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Procedure Record Found</h1>';
 }
 else
 {
