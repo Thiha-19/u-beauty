@@ -40,8 +40,6 @@ where b.status = 'Confirmed' AND b.cid = c.cid
 		}
         if ($data < 1) 
     {
-	echo "<p>No Booking Records Found.</p>";
-	echo "<script>window.location='booking.php'</script>";
     }
     else
     {

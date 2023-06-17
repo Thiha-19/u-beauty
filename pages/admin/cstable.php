@@ -27,8 +27,6 @@ $c_count = mysqli_num_rows($c_ret);
 
 if ($c_count < 1) {
     echo '<h1 class="form-title mt-5" style="color:var(--theme-red);">No Staff Records Found</h1>';
-    echo "<script>window.location='adminmain.php'</script>";
-
 } else {
 ?>
 <div id="body-section">
