@@ -16,9 +16,6 @@ if (isset($_SESSION['csid'])) {
 } else {
 
 }
-if (isset($_POST['btnadd'])) {
-    echo "<script>window.location='customerservice.php'</script>";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +36,7 @@ $c_ret = mysqli_query($connection, $c_List);
 $c_count = mysqli_num_rows($c_ret);
 
 if ($c_count < 1) {
-    echo "<p>No Staff Records Found.</p>";
-    echo "<script>window.location='adminmain.php'</script>";
+    echo "<p>No Notification Records Found.</p>";
 
 } else {
     ?>
