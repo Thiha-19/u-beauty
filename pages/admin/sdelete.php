@@ -2,7 +2,7 @@
 include('../connect.php');
 
 
-$bid=$_GET['csid'];
+$csid=$_GET['csid'];
 
 $Delete="DELETE FROM customerservice WHERE csid='$csid' ";
 $ret=mysqli_query($connection,$Delete);
