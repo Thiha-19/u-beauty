@@ -59,8 +59,7 @@ else
                 <!-- <th>#</th> -->
                 <th>Customer ID</th>
                 <th>Customer Name</th>
-                <th>Email</th>
-                <th>phone</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -81,7 +80,6 @@ else
                 echo "<tr>";
                 echo "<td>$cid</td>";
                 echo "<td>$cname</td>";
-                echo "<td>$email</td>";
                 echo "<td>$phone</td>";
                 echo "<td>
 			  <a href='customerupdate.php?cid=$cid' class='u-btn-gold table-btn table-btn-blue'>Update</a> 
