@@ -55,7 +55,7 @@ $dcount = mysqli_num_rows($res);
                 <!-- <th>#</th> -->
 
                 <th>Page Name</th>
-                <th>Booking Date</th>
+                <th>Admin Name</th>
                 <th>Bookings Count</th>
 
             </tr>
@@ -77,8 +77,8 @@ $dcount = mysqli_num_rows($res);
                 $ret = mysqli_query($connection, $bookingCount);
                 $show = mysqli_fetch_array($ret);
                 echo "<tr>";
-                echo "<td>" . $data1["pageName"] . "</td>";
-                echo "<td>" . $data1["date"] . "</td>";
+                echo "<td>" . $pname . "</td>";
+                echo "<td>" . $csname . "</td>";
                 echo "<td>" . $show["bnum"] . "</td>";
                 echo "</tr>";
             }

@@ -86,6 +86,7 @@ else
         </table>
     </div>
     <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
+        <a href="dailyreport.php" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Daily <br> Report </a>
         <a href="admintdybk.php" class="btn u-btn-gold table-outer-btn px-3 " style="margin:0;"> Today Bookings </a>
         <a href="admintmrbk.php" class="btn u-btn-gold table-outer-btn px-2" style="margin:0;"> Tomorrow Bookings </a>
     </div>

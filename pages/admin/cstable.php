@@ -87,7 +87,11 @@ if ($c_count < 1) {
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
+    <a href="allpie.php" class="btn mt-5 u-btn-gold table-outer-btn">Pie Chart </a>
     <a href="customerservice.php" class="btn mt-5 u-btn-gold table-outer-btn">Add New Page </a>
+    </div>
+    
     <?php
 }
 ?>
