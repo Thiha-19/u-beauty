@@ -31,7 +31,7 @@ if (isset($_POST['btnadd'])) {
 <body>
 
 <?php
-$c_List = "SELECT DISTINCT n.*, cs.csid, c.csid, b.status
+$c_List = "SELECT DISTINCT n.*, cs.csid, c.csid
 FROM noti n, customerservice cs, customer c
 WHERE cs.csid = c.csid AND cs.csid = '$csid' AND c.cid = n.cid
 			 ";

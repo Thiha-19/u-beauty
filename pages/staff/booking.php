@@ -1,7 +1,8 @@
 <?php  
+session_start();
 include('../connect.php');
 include('staffhead.php');
-session_start();
+
 
 if(isset($_SESSION['csid']))
 {   
