@@ -139,8 +139,8 @@ else
                 <select name="txtstatus" class="form-control">
                      <option value="Pending" <?php echo ($status=="Pending")?"selected":  "" ?>>Pending</option>
                      <option value="Arrived"<?php echo ($status=="Arrived")?"selected":"" ?>>Arrived</option>
-                     <option value="Canceled">Canceled</option>
-                     <option value="Confirmed">Confirmed</option>
+                     <option value="Canceled" <?php echo ($status=="Canceled")?"selected":"" ?>>Canceled</option>
+                     <option value="Confirmed" <?php echo ($status=="Confirmed")?"selected":"" ?>>Confirmed</option>
                 </select>
                         <label for="text">Status</label>
                     </div>

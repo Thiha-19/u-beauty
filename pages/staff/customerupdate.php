@@ -155,7 +155,7 @@ else
                 </div>
                 <div class=" col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" name="txtmail" value="<?php echo $email ?>" required>
+                        <input type="email" class="form-control" name="txtmail" value="<?php echo $email ?>">
                         <label for="email">Email</label>
                     </div>
                 </div>
@@ -169,7 +169,7 @@ else
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control"  name="txtdob" value="<?php echo $dob ?>" required>
+                        <input type="date" class="form-control"  name="txtdob" value="<?php echo $dob ?>">
                         <label for="dob">Date of Birth</label>
                     </div>
                 </div>
@@ -177,7 +177,7 @@ else
 			<div class="row">
                 <div class="col-sm-12">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $job ?>" required>
+                        <input type="text" class="form-control"  name="txtjob" value="<?php echo $job ?>">
                         <label for="text">Occupation</label>
                     </div>
                 </div>
