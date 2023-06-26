@@ -2,9 +2,13 @@
 include('../connect.php');
 include('adminhead.php');
 $currentdate = date('Y-m-d');
+// $query = "SELECT *
+// FROM booking b, customerservice cs
+// WHERE b.csid = cs.csid AND b.assignedDate = '$currentdate'
+// ";
+
 $query = "SELECT *
-FROM booking b, customerservice cs
-WHERE b.csid = cs.csid AND b.assignedDate = '$currentdate'
+FROM customerservice
 ";
 
 $res = mysqli_query($connection, $query);

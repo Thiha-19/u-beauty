@@ -3,23 +3,7 @@ session_start();
 include('../connect.php');
 include('adminhead.php');
 
-if(isset($_POST['btnadd'])) 
-  {
-    $sdate=$_POST['sdate'];
-    $edate=$_POST['edate'];
-      
-    // echo "<script>window.alert('SUCCESS :Now loading Pie Chart')</script>";
-    echo "<script>window.location='datepie.php'</script>";
-    // echo "<script>window.location='datepie.php? sdate=$sdate & edate=$edate'</script>";
 
-    // echo "<script>window.alert('SUCCESS : Booking Info Updated')</script>";
-		// echo "<script>window.location='datepie.php'</script>";
-    
-  
-    // & sdate=$txts & edate=$txte
-    
-  
-  }
 $pie="SELECT *
 FROM customerservice
 ";
@@ -29,7 +13,15 @@ FROM customerservice
 	$data=mysqli_fetch_array($query);
   $pcount=mysqli_num_rows($query); 
 
-  
+  if(isset($_POST['btnadd'])) 
+  {
+    $sdate=$_POST['sdate'];
+    $edate=$_POST['edate'];
+      
+    // echo "<script>window.alert('SUCCESS :Now loading Pie Chart')</script>";
+    echo "<script>window.location='datepie.php'</script>";
+    // echo "<script>window.location='datepie.php? sdate=$sdate & edate=$edate'</script>";  
+  }
 ?>
 
 <html>
@@ -80,14 +72,17 @@ FROM customerservice
         <td>
         <div class="form-group">
     	<label class="form-label" for="">Starting Date</label>
-    	<input class="form-label" type="date" name="sdate" required/>
+    	<input class="form-label" type="date" name="txtsdate" required/>
       </div>
 
 	    <div class="form-group">
     	<label class="form-label" for="">Ending Date</label>
-    	<input class="form-label" type="date" name="edate" required/>
+    	<input class="form-label" type="date" name="txtedate" required/>
+      
      
       <input type="submit" class="u-btn-gold" name="btnadd" value="Choose"/>
+      
+    <a href="datepie.php? sdate=sdate & edate=$edate" class="btn u-btn-gold table-outer-btn"> Choose </a>
       </div>
         <td>
           <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
