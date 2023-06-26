@@ -57,6 +57,7 @@ else
                 <th>Page</th>
                 <th>Procedure</th>
                 <th>Status</th>
+                <th>Task</th>
             </tr>
             </thead>
             <tbody>
@@ -80,6 +81,9 @@ else
                 echo "<td>$csid</td>";
                 echo "<td>$procedure</td>";
                 echo "<td>$status</td>";
+                echo "<td class='d-flex '>
+                <a href='bookingdetail.php?bid=$bid' class='u-btn-gold table-btn'>Detail</a>
+                </td>";
             }
             ?>
             </tbody>
