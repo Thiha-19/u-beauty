@@ -43,6 +43,7 @@ if ($c_count < 1) {
                 <th>Username</th>
                 <th>Password</th>
                 <th>Bookings</th>
+                <th>Confirmed</th>
                 <th>Actions</th>
 
             </tr>
@@ -61,12 +62,22 @@ if ($c_count < 1) {
                 $password = $rows['password'];
 
                 $List1 = "SELECT COUNT(bid) as bnum
-  FROM  booking
-  WHERE csid = $csid 
+                FROM  booking
+                WHERE csid = $csid 
   
-  ";
+                ";
                 $ret1 = mysqli_query($connection, $List1);
                 $show1 = mysqli_fetch_array($ret1);
+
+
+                $List2 = "SELECT COUNT(bid) as bnum
+                FROM  booking
+                WHERE csid = $csid and status = 'Confirmed'
+                
+                ";
+                $ret2 = mysqli_query($connection, $List2);
+                $show2 = mysqli_fetch_array($ret2);
+
 
                 echo "<tr>";
                 // echo "<td>" . ($i + 1) ."</td>";
@@ -77,6 +88,7 @@ if ($c_count < 1) {
                 echo "<td>$username</td>";
                 echo "<td>$password</td>";
                 echo "<td>" . $show1['bnum'] . "</td>";
+                echo "<td>" . $show2['bnum'] . "</td>";
                 echo "<td class='d-flex'>
 			  <a href='staffupdate.php?csid=$csid' class='btn u-btn-gold table-btn table-btn-blue'>Update</a> 
 			  <a href='piechoose.php?csid=$csid' class='u-btn-gold table-btn'>Rating</a> 
@@ -88,7 +100,8 @@ if ($c_count < 1) {
         </table>
     </div>
     <div class="d-flex justify-content-end gap-5" style="margin-right:10%;">
-    <a href="allpie.php" class="btn mt-5 u-btn-gold table-outer-btn">Pie Chart </a>
+    <a href="allpie.php" class="btn mt-5 u-btn-gold table-outer-btn">Confirmed Chart </a>
+    <a href="date.php" class="btn mt-5 u-btn-gold table-outer-btn">Booking Chart </a>
     <a href="customerservice.php" class="btn mt-5 u-btn-gold table-outer-btn">Add New Page </a>
     </div>
     

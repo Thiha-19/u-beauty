@@ -11,7 +11,7 @@ if(isset($_POST['btnadd']))
 
     
 	echo "<script>window.alert('SUCCESS :Now loading Pie Chart')</script>";
-	echo "<script>window.location='confirmedpie.php?sdate=$sdate & edate=$edate'</script>";
+	echo "<script>window.location='datepie.php?sdate=$sdate & edate=$edate'</script>";
 	
 
 	// & sdate=$txts & edate=$txte
@@ -43,7 +43,7 @@ if(isset($_POST['btnadd']))
         <div class="form-container">
 
             <div class="form-outer-border">
-        <form action="allpie.php" method="post" enctype="multipart/form-data">
+        <form action="date.php" method="post" enctype="multipart/form-data">
             <h1 class="form-title">Date Customization</h1>
             <div class="row">
                 <div class=" col-sm-12 col-md-6">

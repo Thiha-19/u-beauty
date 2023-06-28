@@ -37,9 +37,9 @@ FROM customerservice
           $data=mysqli_fetch_array($query);
 
   
-          $List1="SELECT COUNT(bid) as bnum
+          $List1="SELECT COUNT(bid) as bnum, status
           FROM  booking
-          WHERE csid = $csid and assignedDate between '$sdate' and '$edate'
+          WHERE csid = $csid and assignedDate between '$sdate' and '$edate' AND status = 'confirmed'
   
           ";
           
